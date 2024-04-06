@@ -63,16 +63,6 @@ public class App {
 
             if (command.isEmpty() || command.equalsIgnoreCase("next")) {
                 client.send(new SimpleMessage("next"));
-
-//                var previousState = server.previousState().getClass().getSimpleName();
-//                var currentState = server.currentState().getClass().getSimpleName();
-//
-//                var serverChannel = server.writeChannel();
-//                var clientChannel = client.readChannel();
-//
-//                System.out.printf("Server [%s -> %s], Message(s): %s\n", previousState, currentState, serverChannel);
-//                System.out.printf("Client Message(s): %s\n", clientChannel);
-
                 client.poll();
             }
 

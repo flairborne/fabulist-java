@@ -90,6 +90,12 @@ public class Server {
         return runtime.previousState();
     }
 
+    public String previousStateName() {
+        var state = runtime.previousState();
+
+        return state == null ? "None" : state.getClass().getSimpleName();
+    }
+
     public boolean isFinished() {
         return runtime.isFinished();
     }

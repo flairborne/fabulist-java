@@ -78,15 +78,19 @@ public class App {
             }
 
             if (command.equalsIgnoreCase("dump")) {
-                var previousState = server.previousState().getClass().getSimpleName();
-                var currentState = server.currentState().getClass().getSimpleName();
-
-                var serverChannel = server.writeChannel();
-                var clientChannel = client.readChannel();
-
-                System.out.printf("Server [%s -> %s], Message(s): %s\n", previousState, currentState, serverChannel);
-                System.out.printf("Client Message(s): %s\n", clientChannel);
+                dump(server, client);
             }
         }
+    }
+
+    private static void dump(Server server, Client client) {
+        var previousState = server.previousStateName();
+        var currentState = server.currentState().getClass().getSimpleName();
+
+        var serverChannel = server.writeChannel();
+        var clientChannel = client.readChannel();
+
+        System.out.printf("Server [%s -> %s], Message(s): %s\n", previousState, currentState, serverChannel);
+        System.out.printf("Client Message(s): %s\n", clientChannel);
     }
 }

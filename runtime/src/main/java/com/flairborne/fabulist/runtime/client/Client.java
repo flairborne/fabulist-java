@@ -46,7 +46,7 @@ public class Client {
         }
 
         if (message.type().equals("finished")) {
-            System.exit(1);
+            System.exit(0);
         }
     }
 

@@ -58,7 +58,7 @@ public class Server {
 
         // TODO: Handle this somewhere much better
         if (message.type().equals("next")) {
-            if (runtime.isBlocked()) {
+            if (runtime.isPaused() || runtime.isBlocked()) {
                 runtime.step();
             }
 
@@ -69,7 +69,7 @@ public class Server {
     }
 
     private void fastForwardState() {
-        while (!runtime.isBlocked() && !runtime.isFinished()) {
+        while (!runtime.isPaused() && !runtime.isBlocked() && !runtime.isFinished()) {
             runtime.step();
         }
     }

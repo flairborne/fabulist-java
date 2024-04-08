@@ -20,23 +20,11 @@ public class RuntimeBlocked implements RuntimeState {
         Message message = potentialMessage.get();
         String type = message.type();
 
-        if (type.equals("next")) {
-            return handleNext(runtime);
-        } else if (type.equals("choice-select")) {
+        if (type.equals("choice-select")) {
             return handleChoiceSelect(runtime, message);
         } else {
             return Runtime.BLOCKED;
         }
-    }
-
-    private RuntimeState handleNext(Runtime runtime) {
-        // Disallow progression of a story from a "next" message since a choice is need to be made
-        // TODO: Fix this fragile check, it bypasses when previous state and current state becomes BLOCKED
-        if (runtime.previousState() == Runtime.BRANCHING) {
-            return Runtime.BLOCKED;
-        }
-
-        return Runtime.READY;
     }
 
     private RuntimeState handleChoiceSelect(Runtime runtime, Message message) {

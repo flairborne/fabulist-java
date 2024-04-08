@@ -9,6 +9,7 @@ import com.flairborne.fabulist.runtime.state.RuntimeActing;
 import com.flairborne.fabulist.runtime.state.RuntimeBlocked;
 import com.flairborne.fabulist.runtime.state.RuntimeBranching;
 import com.flairborne.fabulist.runtime.state.RuntimeFinished;
+import com.flairborne.fabulist.runtime.state.RuntimePaused;
 import com.flairborne.fabulist.runtime.state.RuntimeReady;
 import com.flairborne.fabulist.runtime.state.RuntimeState;
 
@@ -21,6 +22,7 @@ public class Runtime {
 
     public static final RuntimeState READY = new RuntimeReady();
     public static final RuntimeState ACTING = new RuntimeActing();
+    public static final RuntimeState PAUSED = new RuntimePaused();
     public static final RuntimeState BRANCHING = new RuntimeBranching();
     public static final RuntimeState BLOCKED = new RuntimeBlocked();
     public static final RuntimeState FINISHED = new RuntimeFinished();
@@ -78,6 +80,10 @@ public class Runtime {
     public void setCurrentState(RuntimeState newState) {
         this.previousState = this.currentState;
         this.currentState = newState;
+    }
+
+    public boolean isPaused() {
+        return currentState == PAUSED;
     }
 
     public boolean isBlocked() {

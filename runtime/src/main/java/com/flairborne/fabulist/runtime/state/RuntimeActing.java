@@ -15,6 +15,6 @@ public class RuntimeActing implements RuntimeState {
             runtime.server().broadcast(message);
         }
 
-        return Runtime.BLOCKED;
+        return Runtime.PAUSED;
     }
 }

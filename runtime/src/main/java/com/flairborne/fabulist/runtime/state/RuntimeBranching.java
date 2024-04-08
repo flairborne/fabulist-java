@@ -34,7 +34,7 @@ public class RuntimeBranching implements RuntimeState {
 
         runtime.updateCurrentNode(firstLinkage.nextId());
 
-        return Runtime.BLOCKED;
+        return Runtime.PAUSED;
     }
 
     private RuntimeState handleInteractiveLinkages(Runtime runtime) {

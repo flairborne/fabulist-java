@@ -2,7 +2,7 @@ package com.flairborne.fabulist.runtime;
 
 import com.flairborne.fabulist.element.context.BasicContext;
 import com.flairborne.fabulist.element.part.Part;
-import com.flairborne.fabulist.runtime.server.Server;
+import com.flairborne.fabulist.runtime.server.EmbeddedServer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +16,7 @@ public class RuntimeTest {
     void setup() {
         var part = new Part.Builder("part").build();
         var context = new BasicContext();
-        var server = new Server(context, part);
+        var server = new EmbeddedServer(context, part);
         runtime = new Runtime(server, context, part);
     }
 

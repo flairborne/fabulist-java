@@ -8,7 +8,7 @@ import com.flairborne.fabulist.element.context.BasicContext;
 import com.flairborne.fabulist.element.part.Part;
 import com.flairborne.fabulist.element.part.node.Scene;
 import com.flairborne.fabulist.runtime.client.Client;
-import com.flairborne.fabulist.runtime.server.Server;
+import com.flairborne.fabulist.runtime.server.EmbeddedServer;
 
 import java.util.Scanner;
 
@@ -46,7 +46,7 @@ public class App {
         var context = new BasicContext();
 
         // Testing shared memory server and client setup
-        var server = new Server(context, part);
+        var server = new EmbeddedServer(context, part);
         var client = new Client("player");
 
         client.connect(server);
@@ -82,9 +82,9 @@ public class App {
         }
     }
 
-    private static void dump(Server server, Client client) {
-        var previousState = server.previousStateName();
-        var currentState = server.currentState().getClass().getSimpleName();
+    private static void dump(EmbeddedServer embeddedServer, Client client) {
+        var previousState = embeddedServer.previousStateName();
+        var currentState = embeddedServer.currentState().getClass().getSimpleName();
 
         System.out.printf("Server [%s -> %s]\n", previousState, currentState);
     }

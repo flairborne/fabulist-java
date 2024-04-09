@@ -10,6 +10,6 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.7.0"
 }
 
-rootProject.name = "fabulist-server"
+rootProject.name = "fabulist-java"
 
 include("app", "element", "runtime")

@@ -48,10 +48,6 @@ public class EmbeddedServer implements Server {
         return inboundMessages;
     }
 
-    public void update() {
-        runtime.step();
-    }
-
     public RuntimeState currentState() {
         return runtime.currentState();
     }

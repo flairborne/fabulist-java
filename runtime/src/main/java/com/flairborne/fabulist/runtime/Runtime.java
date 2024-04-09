@@ -78,6 +78,10 @@ public class Runtime {
     }
 
     public void setCurrentState(RuntimeState newState) {
+        if (currentState == newState) {
+            return;
+        }
+
         this.previousState = this.currentState;
         this.currentState = newState;
     }

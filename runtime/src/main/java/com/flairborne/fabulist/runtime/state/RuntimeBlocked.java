@@ -1,6 +1,7 @@
 package com.flairborne.fabulist.runtime.state;
 
 import com.flairborne.fabulist.element.ElementId;
+import com.flairborne.fabulist.element.channel.MessageListener;
 import com.flairborne.fabulist.element.channel.message.ChoiceSelectMessage;
 import com.flairborne.fabulist.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.Runtime;
@@ -11,13 +12,12 @@ public class RuntimeBlocked implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {
-        Optional<Message> potentialMessage = runtime.server().peek();
+        Message message = runtime.server().inboundMessages().poll();
 
-        if (potentialMessage.isEmpty()) {
+        if (message == null) {
             return Runtime.BLOCKED;
         }
 
-        Message message = potentialMessage.get();
         String type = message.type();
 
         if (type.equals("choice-select")) {

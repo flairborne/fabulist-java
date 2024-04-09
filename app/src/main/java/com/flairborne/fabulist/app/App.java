@@ -63,7 +63,6 @@ public class App {
 
             if (command.isEmpty() || command.equalsIgnoreCase("next")) {
                 client.send(new SimpleMessage("next"));
-                client.poll();
             }
 
             if (command.startsWith("choice")) {
@@ -87,10 +86,6 @@ public class App {
         var previousState = server.previousStateName();
         var currentState = server.currentState().getClass().getSimpleName();
 
-        var serverChannel = server.writeChannel();
-        var clientChannel = client.readChannel();
-
-        System.out.printf("Server [%s -> %s], Message(s): %s\n", previousState, currentState, serverChannel);
-        System.out.printf("Client Message(s): %s\n", clientChannel);
+        System.out.printf("Server [%s -> %s]\n", previousState, currentState);
     }
 }

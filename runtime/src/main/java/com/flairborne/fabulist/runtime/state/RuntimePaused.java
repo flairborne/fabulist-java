@@ -9,13 +9,12 @@ public class RuntimePaused implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {
-        Optional<Message> potentialMessage = runtime.server().peek();
+        Message message = runtime.server().inboundMessages().poll();
 
-        if (potentialMessage.isEmpty()) {
+        if (message == null) {
             return Runtime.PAUSED;
         }
 
-        Message message = potentialMessage.get();
         String type = message.type();
 
         if (type.equals("next")) {

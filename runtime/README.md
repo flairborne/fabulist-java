@@ -16,7 +16,10 @@ stateDiagram-v2
     has_actions --> has_linkages: node has no actions
     has_linkages --> branching: node has linkages
     has_linkages --> finished: node has no linkages
-    branching --> blocked
+    state has_interactive_linkages <<choice>>
+    branching --> has_interactive_linkages
+    has_interactive_linkages --> blocked: linkages are interactive
+    has_interactive_linkages --> ready: linkages are passthrough
     blocked --> ready
     finished --> [*]
 ```

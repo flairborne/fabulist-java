@@ -6,6 +6,7 @@ plugins {
     // Apply the java Plugin to add support for Java.
     java
     idea
+    checkstyle
 }
 
 repositories {
@@ -37,6 +38,11 @@ idea {
         isDownloadJavadoc = true
         isDownloadSources = true
     }
+}
+
+checkstyle {
+    toolVersion = "10.12.4"
+    configFile = rootProject.file("buildSrc/config/checkstyle/checkstyle.xml")
 }
 
 tasks.named<Test>("test") {

@@ -3,8 +3,6 @@ package com.flairborne.fabulist.runtime.state;
 import com.flairborne.fabulist.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.Runtime;
 
-import java.util.Optional;
-
 public class RuntimePaused implements RuntimeState {
 
     @Override

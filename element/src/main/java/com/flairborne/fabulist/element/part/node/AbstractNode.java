@@ -6,7 +6,6 @@ import com.flairborne.fabulist.element.action.Action;
 import com.flairborne.fabulist.element.context.Interactive;
 import com.flairborne.fabulist.element.part.linkage.Linkage;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;

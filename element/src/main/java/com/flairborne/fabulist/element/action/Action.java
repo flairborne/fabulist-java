@@ -5,8 +5,6 @@ import com.flairborne.fabulist.element.character.Quote;
 import com.flairborne.fabulist.element.context.Context;
 import com.flairborne.fabulist.element.context.Displayable;
 
-import java.util.function.Predicate;
-
 /**
  * Represents an action towards the {@link Context context} of the story.
  */

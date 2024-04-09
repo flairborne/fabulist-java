@@ -5,8 +5,6 @@ import com.flairborne.fabulist.element.channel.message.Message;
 import com.flairborne.fabulist.element.character.Quote;
 import com.flairborne.fabulist.element.context.Context;
 
-import java.util.Map;
-
 public class Dialogue implements Action {
 
     private final Quote quote;

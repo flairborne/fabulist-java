@@ -18,16 +18,14 @@ public class ServerMessageListener implements MessageListener {
     }
 
     private void handleNext() {
-        if (runtime.isPaused() || runtime.isBlocked()) {
+        while (!runtime.isFinished()) {
             runtime.step();
-        }
 
-        fastForwardState();
-    }
-
-    private void fastForwardState() {
-        while (!runtime.isPaused() && !runtime.isBlocked() && !runtime.isFinished()) {
-            runtime.step();
+            // Step once to allow it to process its interrupted state
+            if (runtime.isPaused() || runtime.isBlocked() || runtime.isFinished()) {
+                runtime.step();
+                break;
+            }
         }
     }
 }

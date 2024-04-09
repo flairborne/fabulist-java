@@ -14,18 +14,6 @@ public class ServerMessageListener implements MessageListener {
 
     @Override
     public void onReceive(Message message) {
-        handleNext();
-    }
-
-    private void handleNext() {
-        while (!runtime.isFinished()) {
-            runtime.step();
-
-            // Step once to allow it to process its interrupted state
-            if (runtime.isPaused() || runtime.isBlocked() || runtime.isFinished()) {
-                runtime.step();
-                break;
-            }
-        }
+        runtime.step();
     }
 }

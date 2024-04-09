@@ -44,6 +44,18 @@ public class Runtime {
     }
 
     public void step() {
+        while (!isFinished()) {
+            updateState();
+
+            // Step once to allow it to process its interrupted state
+            if (isPaused() || isBlocked() || isFinished()) {
+                updateState();
+                break;
+            }
+        }
+    }
+
+    private void updateState() {
         RuntimeState nextState = currentState.handle(this);
         setCurrentState(nextState);
     }

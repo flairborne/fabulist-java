@@ -89,7 +89,7 @@ public class Runtime {
         return currentState;
     }
 
-    public void setCurrentState(RuntimeState newState) {
+    private void setCurrentState(RuntimeState newState) {
         if (currentState == newState) {
             return;
         }

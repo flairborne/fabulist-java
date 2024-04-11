@@ -15,6 +15,10 @@ public class RuntimeActing implements RuntimeState {
             runtime.server().broadcast(message);
         }
 
-        return Runtime.PAUSED;
+        if (current.isInteractive() && current.actions().isEmpty()) {
+            return Runtime.READY;
+        } else {
+            return Runtime.PAUSED;
+        }
     }
 }

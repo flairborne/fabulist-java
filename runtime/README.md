@@ -10,7 +10,10 @@ stateDiagram-v2
     state has_actions <<choice>>
     ready --> has_actions
     has_actions --> acting: node has actions
-    acting --> paused
+    state is_interactive <<choice>>
+    acting --> is_interactive
+    is_interactive --> ready: node is interactive and\n has no more actions
+    is_interactive --> paused: node has more actions
     paused --> ready
     state has_linkages <<choice>>
     has_actions --> has_linkages: node has no actions

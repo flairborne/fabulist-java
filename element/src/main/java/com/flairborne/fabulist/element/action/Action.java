@@ -7,6 +7,7 @@ import com.flairborne.fabulist.element.context.Displayable;
 
 /**
  * Represents an action towards the {@link Context context} of the story.
+ * Every action produces a message that details what has happened.
  */
 public interface Action extends Displayable {
 

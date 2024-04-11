@@ -2,7 +2,7 @@ package com.flairborne.fabulist.app;
 
 import com.flairborne.fabulist.element.ElementId;
 import com.flairborne.fabulist.element.channel.message.ChoiceSelectMessage;
-import com.flairborne.fabulist.element.channel.message.SimpleMessage;
+import com.flairborne.fabulist.element.channel.message.NextMessage;
 import com.flairborne.fabulist.element.character.Character;
 import com.flairborne.fabulist.element.context.BasicContext;
 import com.flairborne.fabulist.element.part.Part;
@@ -62,7 +62,7 @@ public class App {
             }
 
             if (command.isEmpty() || command.equalsIgnoreCase("next")) {
-                client.send(new SimpleMessage("next"));
+                client.send(new NextMessage());
             }
 
             if (command.startsWith("choice")) {

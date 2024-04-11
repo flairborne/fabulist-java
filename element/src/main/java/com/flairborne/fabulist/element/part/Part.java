@@ -58,11 +58,13 @@ public class Part extends AbstractElement implements Element {
 
     private Part(Builder builder) {
         super(builder.id);
-        nodes = builder.nodes;
 
-        if (!nodes.isEmpty()) {
-            root = nodes.get(0);
+        if (builder.nodes.isEmpty()) {
+            throw new IllegalStateException("Part does not have any nodes");
         }
+
+        nodes = builder.nodes;
+        root = nodes.get(0);
     }
 
     /**

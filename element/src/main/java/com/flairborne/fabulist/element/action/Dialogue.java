@@ -15,9 +15,6 @@ public class Dialogue implements Action {
 
     @Override
     public Message act(Context context) {
-//        String dialogue = String.format("[%s]: %s\n", quote.character().name(), quote.text());
-//        context.display(dialogue);
-
         return new DialogueMessage(quote.character().name(), quote.text());
     }
 

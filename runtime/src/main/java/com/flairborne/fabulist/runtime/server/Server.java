@@ -1,6 +1,7 @@
 package com.flairborne.fabulist.runtime.server;
 
 import com.flairborne.fabulist.element.channel.message.Message;
+import com.flairborne.fabulist.runtime.Runtime;
 
 import java.util.Queue;
 
@@ -27,4 +28,9 @@ public interface Server {
      * @return messages that are sent to this server
      */
     Queue<Message> inboundMessages();
+
+    /**
+     * @return runtime in this server
+     */
+    Runtime runtime();
 }

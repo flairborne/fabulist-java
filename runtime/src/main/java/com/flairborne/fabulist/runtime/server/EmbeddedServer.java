@@ -48,6 +48,11 @@ public class EmbeddedServer implements Server {
         return inboundMessages;
     }
 
+    @Override
+    public Runtime runtime() {
+        return runtime;
+    }
+
     public RuntimeState currentState() {
         return runtime.currentState();
     }

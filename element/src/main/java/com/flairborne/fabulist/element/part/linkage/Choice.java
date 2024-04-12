@@ -6,7 +6,7 @@ import com.flairborne.fabulist.element.context.Interactive;
 /**
  * An {@link Interactive interactive} linkage that is prompted to the user.
  */
-public class Choice extends AbstractLinkage implements Linkage {
+public class Choice extends AbstractLinkage {
 
     protected Choice(ElementId previous, ElementId next) {
         super(previous, next);

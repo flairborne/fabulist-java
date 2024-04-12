@@ -6,7 +6,7 @@ import com.flairborne.fabulist.element.context.Interactive;
 /**
  * A {@link Interactive non-interactive} linkage that simply lets the node continue to the next node.
  */
-public class Passthrough extends AbstractLinkage implements Linkage {
+public class Passthrough extends AbstractLinkage {
 
     protected Passthrough(ElementId previous, ElementId next) {
         super(previous, next);

@@ -5,7 +5,7 @@ import com.flairborne.fabulist.element.action.Action;
 import com.flairborne.fabulist.element.character.Quote;
 import com.flairborne.fabulist.element.part.linkage.Linkage;
 
-public class Scene extends AbstractNode implements Node {
+public class Scene extends AbstractNode {
 
     public static class Builder extends AbstractNode.Builder<Builder> {
 

@@ -1,7 +1,6 @@
 package com.flairborne.fabulist.element.part;
 
 import com.flairborne.fabulist.element.AbstractElement;
-import com.flairborne.fabulist.element.Element;
 import com.flairborne.fabulist.element.ElementId;
 import com.flairborne.fabulist.element.part.linkage.Choice;
 import com.flairborne.fabulist.element.part.linkage.Linkage;
@@ -18,7 +17,7 @@ import java.util.Optional;
  * This structure allows the representation of all possible {@link Scene outcomes} of a story.
  * Each outcome is driven by different {@link Choice choices} (and other linkage types) interactions made by a player.
  */
-public class Part extends AbstractElement implements Element {
+public class Part extends AbstractElement {
 
     // TODO: Use a map for O(1) access. We query the element ID as the key anyway
     private final List<Node> nodes;

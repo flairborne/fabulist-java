@@ -17,6 +17,7 @@ public class ClientMessageListener implements MessageListener {
         if (message.type().equals("choice-present")) {
             var choice = (ChoicePresentMessage) message;
 
+            System.out.println("\nPlease select a choice:");
             for (var choiceMessage : choice.choiceMessages()) {
                 System.out.printf("- [%s]: %s\n", choiceMessage.id(), choiceMessage.displayText());
             }

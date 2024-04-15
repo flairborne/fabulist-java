@@ -11,6 +11,11 @@ import com.flairborne.fabulist.element.context.Displayable;
  */
 public interface Action extends Displayable {
 
+    /**
+     * Perform action.
+     *
+     * @return {@link Message} message to send that indicates completion of this action
+     */
     Message act(Context context);
 
     /**

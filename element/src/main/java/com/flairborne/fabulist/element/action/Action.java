@@ -19,6 +19,11 @@ public interface Action extends Displayable {
     Message act(Context context);
 
     /**
+     * @return a condition check that must pass so that this action can be executed by the {@link Runtime runtime}
+     */
+    Predicate<Context> condition();
+
+    /**
      * @return a new instance of {@link Dialogue}
      */
     static Action dialogue(Quote quote) {

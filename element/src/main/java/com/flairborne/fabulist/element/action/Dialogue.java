@@ -5,11 +5,14 @@ import com.flairborne.fabulist.element.channel.message.Message;
 import com.flairborne.fabulist.element.character.Quote;
 import com.flairborne.fabulist.element.context.Context;
 
-public class Dialogue implements Action {
+import java.util.function.Predicate;
+
+public class Dialogue extends AbstractAction {
 
     private final Quote quote;
 
-    protected Dialogue(Quote quote) {
+    protected Dialogue(Quote quote, Predicate<Context> condition) {
+        super(condition);
         this.quote = quote;
     }
 

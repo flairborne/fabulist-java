@@ -1,6 +1,7 @@
 package com.flairborne.fabulist.runtime.state;
 
 import com.flairborne.fabulist.element.channel.message.ChoicePresentMessage;
+import com.flairborne.fabulist.element.context.Context;
 import com.flairborne.fabulist.element.part.linkage.Linkage;
 import com.flairborne.fabulist.element.part.node.Node;
 import com.flairborne.fabulist.runtime.Runtime;
@@ -8,6 +9,7 @@ import com.flairborne.fabulist.runtime.Runtime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class RuntimeBranching implements RuntimeState {
 
@@ -42,6 +44,12 @@ public class RuntimeBranching implements RuntimeState {
 
         for (Linkage linkage : runtime.currentNode().linkages()) {
             if (!linkage.isInteractive()) {
+                continue;
+            }
+
+            Predicate<Context> condition = linkage.condition();
+
+            if (condition != null && !condition.test(runtime.context())) {
                 continue;
             }
 

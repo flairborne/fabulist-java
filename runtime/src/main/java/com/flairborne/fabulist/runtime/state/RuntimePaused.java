@@ -15,7 +15,7 @@ public class RuntimePaused implements RuntimeState {
 
         String type = message.type();
 
-        if (type.equals("next")) {
+        if (type.equals("next") || type.equals("change-context")) {
             return Runtime.READY;
         } else {
             return Runtime.PAUSED;

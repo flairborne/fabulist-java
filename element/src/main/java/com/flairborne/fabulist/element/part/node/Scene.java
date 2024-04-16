@@ -2,6 +2,7 @@ package com.flairborne.fabulist.element.part.node;
 
 import com.flairborne.fabulist.element.ElementId;
 import com.flairborne.fabulist.element.action.Action;
+import com.flairborne.fabulist.element.action.ChangeContext;
 import com.flairborne.fabulist.element.character.Quote;
 import com.flairborne.fabulist.element.context.Context;
 import com.flairborne.fabulist.element.context.Displayable;
@@ -22,12 +23,12 @@ public class Scene extends AbstractNode {
             super(id);
         }
 
-        public Builder addChangeContext(String key, Object value) {
-            return addAction(Action.changeContext(key, value, null));
+        public Builder addChangeContext(ChangeContext.Operation operation, String key, Object value) {
+            return addAction(Action.changeContext(operation, key, value, null));
         }
 
-        public Builder addChangeContextWhen(String key, Object value, Predicate<Context> condition) {
-            return addAction(Action.changeContext(key, value, condition));
+        public Builder addChangeContextWhen(ChangeContext.Operation operation, String key, Object value, Predicate<Context> condition) {
+            return addAction(Action.changeContext(operation, key, value, condition));
         }
 
         public Builder addDialogue(Quote quote) {

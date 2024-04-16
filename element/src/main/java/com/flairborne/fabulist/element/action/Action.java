@@ -32,7 +32,7 @@ public interface Action extends Displayable {
         return new Dialogue(quote, condition);
     }
 
-    static Action changeContext(String key, Object value, Predicate<Context> condition) {
-        return new ChangeContext(key, value, condition);
+    static Action changeContext(ChangeContext.Operation operation, String key, Object value, Predicate<Context> condition) {
+        return new ChangeContext(operation, key, value, condition);
     }
 }

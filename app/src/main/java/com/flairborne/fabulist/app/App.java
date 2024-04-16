@@ -1,10 +1,12 @@
 package com.flairborne.fabulist.app;
 
 import com.flairborne.fabulist.element.ElementId;
+import com.flairborne.fabulist.element.action.ChangeContext;
 import com.flairborne.fabulist.element.channel.message.ChoiceSelectMessage;
 import com.flairborne.fabulist.element.channel.message.NextMessage;
 import com.flairborne.fabulist.element.character.Character;
 import com.flairborne.fabulist.element.context.BasicContext;
+import com.flairborne.fabulist.element.context.Context;
 import com.flairborne.fabulist.element.part.Part;
 import com.flairborne.fabulist.element.part.node.Scene;
 import com.flairborne.fabulist.runtime.client.Client;
@@ -22,14 +24,16 @@ public class App {
         // Define part
         var part = new Part.Builder(ElementId.random())
                 .addNode(new Scene.Builder("alice-hi")
+                        .addChangeContext(ChangeContext.Operation.SET_BOOLEAN, "is-fine", true)
                         .addDialogue(alice.quote("Hey, my name is Alice"))
                         .addDialogue(alice.quote("How you doing?"))
-                        .addChoice("bob-fine")
+                        .addChoiceWhen("bob-fine", Context.isPropertyTrue("is-fine"))
                         .addChoice("bob-rude"))
                 .addNode(new Scene.Builder("bob-fine")
                         .addDialogue(bob.quote("Hello, I'm Bob. I'm fine"))
                         .addPassthrough("alice-happy"))
                 .addNode(new Scene.Builder("bob-rude")
+                        .addChangeContext(ChangeContext.Operation.SET_BOOLEAN, "leaving", true)
                         .addDialogue(bob.quote("I don't care about you, Alice!"))
                         .addPassthrough("alice-sad"))
                 .addNode(new Scene.Builder("alice-happy")
@@ -39,8 +43,9 @@ public class App {
                         .addDialogue(bob.quote("Nah, just stop...")))
                 .addNode(new Scene.Builder("alice-sad")
                         .addDialogue(alice.quote("Wow, you're mean"))
-                        .addDialogue(alice.quote("Okay, I can't take this anymore. I'm leaving now...")))
-                .build();
+                        .addDialogueWhen(alice.quote("Okay, I can't take this anymore. I'm leaving now..."),
+                                Context.isPropertyTrue("leaving")))
+                        .build();
 
         var input = new Scanner(System.in);
         var context = new BasicContext();

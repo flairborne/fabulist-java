@@ -10,23 +10,27 @@ public class PropertyMap {
     public PropertyMap() {
     }
 
-    private void setProperty(String key, Object value) {
+    public int getInt(String key) {
+        return (int) properties.get(key);
+    }
+
+    public void setInt(String key, int value) {
         properties.put(key, value);
     }
 
-    private Object getProperty(String key) {
-        return properties.get(key);
+    public void addInt(String key, int value) {
+        properties.put(key, getInt(key) + value);
     }
 
-    public void setInteger(String key, int value) {
-        setProperty(key, value);
+    public void subtractInt(String key, int value) {
+        properties.put(key, getInt(key) - value);
     }
 
     public void setBoolean(String key, boolean value) {
-        setProperty(key, value);
+        properties.put(key, value);
     }
 
     public boolean getBoolean(String key) {
-        return (Boolean) properties.get(key);
+        return (boolean) properties.get(key);
     }
 }

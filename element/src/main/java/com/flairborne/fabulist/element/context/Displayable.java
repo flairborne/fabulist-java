@@ -10,6 +10,6 @@ public interface Displayable {
      * @return whether linkage is visible to the user
      */
     default boolean isVisible() {
-        return false;
+        return true;
     }
 }

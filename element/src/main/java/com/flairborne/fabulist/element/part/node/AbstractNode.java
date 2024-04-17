@@ -69,6 +69,10 @@ public abstract class AbstractNode extends AbstractElement implements Node {
         }
 
         public T addLinkage(Linkage linkage) {
+            if (!linkage.previousId().equals(id)) {
+                throw new IllegalArgumentException("Cannot add linkage that does not originate from this node");
+            }
+
             linkages.add(linkage);
             return self();
         }

@@ -12,8 +12,21 @@ public abstract class AbstractAction implements Action {
 
     private final Predicate<Context> condition;
 
-    protected AbstractAction(Predicate<Context> condition) {
-        this.condition = condition;
+    public static abstract class Builder<T extends Builder<T>> {
+        private Predicate<Context> condition;
+
+        public T when(Predicate<Context> condition) {
+            this.condition = condition;
+            return self();
+        }
+
+        public abstract Action build();
+
+        public abstract T self();
+    }
+
+    protected AbstractAction(Builder<?> builder) {
+        condition = builder.condition;
     }
 
     @Override

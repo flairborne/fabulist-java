@@ -5,15 +5,32 @@ import com.flairborne.fabulist.element.channel.message.Message;
 import com.flairborne.fabulist.element.character.Quote;
 import com.flairborne.fabulist.element.context.Context;
 
-import java.util.function.Predicate;
-
 public class Dialogue extends AbstractAction {
 
     private final Quote quote;
 
-    protected Dialogue(Quote quote, Predicate<Context> condition) {
-        super(condition);
-        this.quote = quote;
+    public static class Builder extends AbstractAction.Builder<Builder> {
+
+        private final Quote quote;
+
+        public Builder(Quote quote) {
+            this.quote = quote;
+        }
+
+        @Override
+        public Action build() {
+            return new Dialogue(this);
+        }
+
+        @Override
+        public Builder self() {
+            return this;
+        }
+    }
+
+    private Dialogue(Builder builder) {
+        super(builder);
+        quote = builder.quote;
     }
 
     @Override

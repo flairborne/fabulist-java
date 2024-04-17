@@ -4,8 +4,6 @@ import com.flairborne.fabulist.element.channel.message.ChangeContextMessage;
 import com.flairborne.fabulist.element.channel.message.Message;
 import com.flairborne.fabulist.element.context.Context;
 
-import java.util.function.Predicate;
-
 public class ChangeContext extends AbstractAction {
 
     private final Operation operation;
@@ -33,11 +31,33 @@ public class ChangeContext extends AbstractAction {
         }
     }
 
-    protected ChangeContext(Operation operation, String key, Object value, Predicate<Context> condition) {
-        super(condition);
-        this.key = key;
-        this.value = value;
-        this.operation = operation;
+    public static class Builder extends AbstractAction.Builder<Builder> {
+        private final Operation operation;
+        private final String key;
+        private final Object value;
+
+        public Builder(Operation operation, String key, Object value) {
+            this.operation = operation;
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public Action build() {
+            return new ChangeContext(this);
+        }
+
+        @Override
+        public Builder self() {
+            return null;
+        }
+    }
+
+    private ChangeContext(Builder builder) {
+        super(builder);
+        key = builder.key;
+        value = builder.value;
+        operation = builder.operation;
     }
 
     @Override

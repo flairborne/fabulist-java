@@ -1,11 +1,14 @@
 package com.flairborne.fabulist.runtime;
 
 import com.flairborne.fabulist.element.ElementId;
+import com.flairborne.fabulist.element.action.Dialogue;
 import com.flairborne.fabulist.element.channel.message.ChoiceSelectMessage;
 import com.flairborne.fabulist.element.channel.message.NextMessage;
 import com.flairborne.fabulist.element.character.Character;
 import com.flairborne.fabulist.element.context.BasicContext;
 import com.flairborne.fabulist.element.part.Part;
+import com.flairborne.fabulist.element.part.linkage.Choice;
+import com.flairborne.fabulist.element.part.linkage.Passthrough;
 import com.flairborne.fabulist.element.part.node.Scene;
 import com.flairborne.fabulist.runtime.server.EmbeddedServer;
 import org.junit.jupiter.api.Test;
@@ -39,7 +42,7 @@ public class RuntimeTest {
         var stuart = Character.from("stuart", "Stuart");
         var runtime = createRuntime(new Part.Builder("part")
                 .addNode(new Scene.Builder("intro")
-                        .addDialogue(stuart.quote("Hi")))
+                        .addAction(new Dialogue.Builder(stuart.quote("Hi"))))
         );
 
         runtime.server().sendMessage(new NextMessage());
@@ -54,11 +57,10 @@ public class RuntimeTest {
         var stuart = Character.from("stuart", "Stuart");
         var runtime = createRuntime(new Part.Builder("part")
                 .addNode(new Scene.Builder("scene-a")
-                        .addDialogue(stuart.quote("Banana"))
-                        .addPassthrough("scene-b"))
+                        .addAction(new Dialogue.Builder(stuart.quote("Banana")))
+                        .addLinkage(new Passthrough.Builder("scene-a", "scene-b")))
                 .addNode(new Scene.Builder("scene-b"))
         );
-
 
         runtime.server().sendMessage(new NextMessage());
 
@@ -76,12 +78,12 @@ public class RuntimeTest {
         var stuart = Character.from("stuart", "Stuart");
         var runtime = createRuntime(new Part.Builder("part")
                 .addNode(new Scene.Builder("scene-a")
-                        .addDialogue(stuart.quote("What fruit should I eat?"))
-                        .addChoice("scene-b"))
+                        .addAction(new Dialogue.Builder(stuart.quote("What fruit should I eat?")))
+                        .addLinkage(new Choice.Builder("scene-a", "scene-b")))
                 .addNode(new Scene.Builder("scene-b")
-                        .addDialogue(stuart.quote("Banana")))
+                        .addAction(new Dialogue.Builder(stuart.quote("Banana"))))
                 .addNode(new Scene.Builder("scene-c")
-                        .addDialogue(stuart.quote("Apple")))
+                        .addAction(new Dialogue.Builder(stuart.quote("Apple"))))
         );
 
         runtime.server().sendMessage(new NextMessage());

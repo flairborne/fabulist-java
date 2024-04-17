@@ -14,10 +14,35 @@ public abstract class AbstractLinkage implements Linkage {
     protected final ElementId next;
     protected final Predicate<Context> condition;
 
-    protected AbstractLinkage(ElementId previous, ElementId next, Predicate<Context> condition) {
-        this.previous = previous;
-        this.next = next;
-        this.condition = condition;
+    public static abstract class Builder<T extends Builder<T>> {
+
+        protected final ElementId previous;
+        protected final ElementId next;
+        protected Predicate<Context> condition;
+
+        protected Builder(ElementId previous, ElementId next) {
+            this.previous = previous;
+            this.next = next;
+        }
+
+        protected Builder(String previous, String next) {
+            this(ElementId.from(previous), ElementId.from(next));
+        }
+
+        public T when(Predicate<Context> condition) {
+            this.condition = condition;
+            return self();
+        }
+
+        public abstract Linkage build();
+
+        protected abstract T self();
+    }
+
+    protected AbstractLinkage(Builder<?> builder) {
+        previous = builder.previous;
+        next = builder.next;
+        condition = builder.condition;
     }
 
     @Override

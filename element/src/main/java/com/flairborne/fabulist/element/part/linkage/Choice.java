@@ -1,17 +1,35 @@
 package com.flairborne.fabulist.element.part.linkage;
 
 import com.flairborne.fabulist.element.ElementId;
-import com.flairborne.fabulist.element.context.Context;
 import com.flairborne.fabulist.element.context.Interactive;
-
-import java.util.function.Predicate;
 
 /**
  * An {@link Interactive interactive} linkage that is prompted to the user.
  */
 public class Choice extends AbstractLinkage {
 
-    protected Choice(ElementId previous, ElementId next, Predicate<Context> condition) {
-        super(previous, next, condition);
+    public static class Builder extends AbstractLinkage.Builder<Builder> {
+
+        public Builder(ElementId previous, ElementId next) {
+            super(previous, next);
+        }
+
+        public Builder(String previous, String next) {
+            super(previous, next);
+        }
+
+        @Override
+        public Linkage build() {
+            return new Choice(this);
+        }
+
+        @Override
+        protected Builder self() {
+            return this;
+        }
+    }
+
+    private Choice(Builder builder) {
+        super(builder);
     }
 }

@@ -29,22 +29,4 @@ public interface Linkage extends Interactive {
      * for traversal of other {@link Node nodes} by the {@link Runtime runtime}
      */
     Predicate<Context> condition();
-
-    /**
-     * @param previousId id of the previous node
-     * @param nextId     id of the next node
-     * @return a new instance of {@link Choice}
-     */
-    static Linkage choice(ElementId previousId, ElementId nextId, Predicate<Context> condition) {
-        return new Choice(previousId, nextId, condition);
-    }
-
-    /**
-     * @param previousId id of the previous node
-     * @param nextId     id of the next node
-     * @return a new instance of {@link Passthrough}
-     */
-    static Linkage passthrough(ElementId previousId, ElementId nextId, Predicate<Context> condition) {
-        return new Passthrough(previousId, nextId, condition);
-    }
 }

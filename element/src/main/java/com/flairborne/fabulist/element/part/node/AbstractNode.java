@@ -5,6 +5,7 @@ import com.flairborne.fabulist.element.ElementId;
 import com.flairborne.fabulist.element.action.AbstractAction;
 import com.flairborne.fabulist.element.action.Action;
 import com.flairborne.fabulist.element.context.Interactive;
+import com.flairborne.fabulist.element.part.linkage.AbstractLinkage;
 import com.flairborne.fabulist.element.part.linkage.Linkage;
 
 import java.util.Collections;
@@ -53,6 +54,18 @@ public abstract class AbstractNode extends AbstractElement implements Node {
         public T addAction(Action action) {
             actions.add(action);
             return self();
+        }
+
+        public T withLinkages(AbstractLinkage.Builder<?>... builders) {
+            for (AbstractLinkage.Builder<?> builder : builders) {
+                addLinkage(builder);
+            }
+
+            return self();
+        }
+
+        public T addLinkage(AbstractLinkage.Builder<?> builder) {
+            return addLinkage(builder.build());
         }
 
         public T addLinkage(Linkage linkage) {

@@ -2,12 +2,15 @@ package com.flairborne.fabulist.app;
 
 import com.flairborne.fabulist.element.ElementId;
 import com.flairborne.fabulist.element.action.ChangeContext;
+import com.flairborne.fabulist.element.action.Dialogue;
 import com.flairborne.fabulist.element.channel.message.ChoiceSelectMessage;
 import com.flairborne.fabulist.element.channel.message.NextMessage;
 import com.flairborne.fabulist.element.character.Character;
 import com.flairborne.fabulist.element.context.BasicContext;
 import com.flairborne.fabulist.element.context.Context;
 import com.flairborne.fabulist.element.part.Part;
+import com.flairborne.fabulist.element.part.linkage.Choice;
+import com.flairborne.fabulist.element.part.linkage.Passthrough;
 import com.flairborne.fabulist.element.part.node.Scene;
 import com.flairborne.fabulist.runtime.client.Client;
 import com.flairborne.fabulist.runtime.server.EmbeddedServer;
@@ -24,28 +27,43 @@ public class App {
         // Define part
         var part = new Part.Builder(ElementId.random())
                 .addNode(new Scene.Builder("alice-hi")
-                        .addChangeContext(ChangeContext.Operation.SET_BOOLEAN, "is-fine", true)
-                        .addDialogue(alice.quote("Hey, my name is Alice"))
-                        .addDialogue(alice.quote("How you doing?"))
-                        .addChoiceWhen("bob-fine", Context.isPropertyTrue("is-fine"))
-                        .addChoice("bob-rude"))
+                        .withActions(
+                                new ChangeContext.Builder(ChangeContext.Operation.SET_BOOLEAN, "is-fine", true),
+                                new Dialogue.Builder(alice.quote("Hey, my name is Alice")),
+                                new Dialogue.Builder(alice.quote("How you doing?"))
+                        )
+                        .withLinkages(
+                                new Choice.Builder("alice-hi", "bob-fine"),
+                                new Choice.Builder("alice-hi", "bob-rude")
+                        )
+                )
                 .addNode(new Scene.Builder("bob-fine")
-                        .addDialogue(bob.quote("Hello, I'm Bob. I'm fine"))
-                        .addPassthrough("alice-happy"))
+                        .addAction(new Dialogue.Builder(bob.quote("Hello, I'm Bob. I'm fine")))
+                        .addLinkage(new Passthrough.Builder("bob-fine", "alice-happy"))
+                )
                 .addNode(new Scene.Builder("bob-rude")
-                        .addChangeContext(ChangeContext.Operation.SET_BOOLEAN, "leaving", true)
-                        .addDialogue(bob.quote("I don't care about you, Alice!"))
-                        .addPassthrough("alice-sad"))
+                        .withActions(
+                                new ChangeContext.Builder(ChangeContext.Operation.SET_BOOLEAN, "leaving", true),
+                                new Dialogue.Builder(bob.quote("I don't care about you, Alice!"))
+                        )
+                        .addLinkage(new Passthrough.Builder("bob-rude", "alice-sad"))
+                )
                 .addNode(new Scene.Builder("alice-happy")
-                        .addDialogue(alice.quote("Nah, you're not fine. You're \"Bob!\""))
-                        .addDialogue(bob.quote("Okay..?"))
-                        .addDialogue(alice.quote("I'm \"punny\" right?"))
-                        .addDialogue(bob.quote("Nah, just stop...")))
+                        .withActions(
+                                new Dialogue.Builder(alice.quote("Nah, you're not fine. You're \"Bob!\"")),
+                                new Dialogue.Builder(bob.quote("Okay..?")),
+                                new Dialogue.Builder(alice.quote("I'm \"punny\" right?")),
+                                new Dialogue.Builder(bob.quote("Nah, just stop..."))
+                        )
+                )
                 .addNode(new Scene.Builder("alice-sad")
-                        .addDialogue(alice.quote("Wow, you're mean"))
-                        .addDialogueWhen(alice.quote("Okay, I can't take this anymore. I'm leaving now..."),
-                                Context.isPropertyTrue("leaving")))
-                        .build();
+                        .withActions(
+                                new Dialogue.Builder(alice.quote("Wow, you're mean")),
+                                new Dialogue.Builder(alice.quote("Okay, I can't take this anymore. I'm leaving now..."))
+                                        .when(Context.isPropertyTrue("leaving"))
+                        )
+                )
+                .build();
 
         var input = new Scanner(System.in);
         var context = new BasicContext();

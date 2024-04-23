@@ -4,7 +4,6 @@ import com.flairborne.fabulist.element.AbstractElement;
 import com.flairborne.fabulist.element.ElementId;
 import com.flairborne.fabulist.element.action.AbstractAction;
 import com.flairborne.fabulist.element.action.Action;
-import com.flairborne.fabulist.element.context.Interactive;
 import com.flairborne.fabulist.element.part.linkage.AbstractLinkage;
 import com.flairborne.fabulist.element.part.linkage.Linkage;
 
@@ -21,6 +20,7 @@ public abstract class AbstractNode extends AbstractElement implements Node {
     // TODO: Queue of actions might disable backtracking or undo functionality
     protected final Queue<Action> actions;
     protected final List<Linkage> linkages;
+    protected final boolean isInteractive;
 
     // Builder is a generic type with a recursive type parameter
     public abstract static class Builder<T extends Builder<T>> {
@@ -28,6 +28,7 @@ public abstract class AbstractNode extends AbstractElement implements Node {
         protected final ElementId id;
         protected final Queue<Action> actions;
         protected final List<Linkage> linkages;
+        private boolean isInteractive;
 
         public Builder(String id) {
             this(ElementId.from(id));
@@ -73,6 +74,10 @@ public abstract class AbstractNode extends AbstractElement implements Node {
                 throw new IllegalArgumentException("Cannot add linkage that does not originate from this node");
             }
 
+            if (!isInteractive && linkage.isInteractive()) {
+                isInteractive = true;
+            }
+
             linkages.add(linkage);
             return self();
         }
@@ -87,6 +92,7 @@ public abstract class AbstractNode extends AbstractElement implements Node {
         super(builder.id);
         actions = builder.actions;
         linkages = Collections.unmodifiableList(builder.linkages);
+        isInteractive = builder.isInteractive;
     }
 
     @Override
@@ -109,6 +115,6 @@ public abstract class AbstractNode extends AbstractElement implements Node {
      */
     @Override
     public boolean isInteractive() {
-        return linkages.stream().anyMatch(Interactive::isInteractive);
+        return isInteractive;
     }
 }

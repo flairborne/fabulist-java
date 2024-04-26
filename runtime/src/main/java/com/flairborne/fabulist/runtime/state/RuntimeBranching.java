@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public class RuntimeBranching implements RuntimeState {
+public final class RuntimeBranching implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {

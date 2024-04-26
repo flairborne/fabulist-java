@@ -8,7 +8,7 @@ import com.flairborne.fabulist.runtime.Runtime;
 
 import java.util.function.Predicate;
 
-public class RuntimeActing implements RuntimeState {
+public final class RuntimeActing implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {

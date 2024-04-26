@@ -2,7 +2,7 @@ package com.flairborne.fabulist.runtime.state;
 
 import com.flairborne.fabulist.runtime.Runtime;
 
-public class RuntimeReady implements RuntimeState {
+public final class RuntimeReady implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {

@@ -5,7 +5,7 @@ import com.flairborne.fabulist.element.channel.message.ChoiceSelectMessage;
 import com.flairborne.fabulist.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.Runtime;
 
-public class RuntimeBlocked implements RuntimeState {
+public final class RuntimeBlocked implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {

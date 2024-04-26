@@ -8,7 +8,6 @@ import com.flairborne.fabulist.runtime.Runtime;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Predicate;
 
 public final class RuntimeBranching implements RuntimeState {
@@ -53,11 +52,7 @@ public final class RuntimeBranching implements RuntimeState {
                 continue;
             }
 
-            Optional<Node> next = runtime.getNode(linkage.nextId());
-
-            next.ifPresent(node -> {
-                choices.add(new ChoicePresentMessage.ChoiceMessage(node.id().toString(), node.displayText()));
-            });
+            choices.add(new ChoicePresentMessage.ChoiceMessage(linkage.nextId().toString(), linkage.displayText()));
         }
 
         runtime.server().broadcast(new ChoicePresentMessage(choices));

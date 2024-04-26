@@ -2,6 +2,7 @@ package com.flairborne.fabulist.element.part.linkage;
 
 import com.flairborne.fabulist.element.ElementId;
 import com.flairborne.fabulist.element.context.Context;
+import com.flairborne.fabulist.element.context.Displayable;
 import com.flairborne.fabulist.element.context.Interactive;
 import com.flairborne.fabulist.element.part.Part;
 import com.flairborne.fabulist.element.part.node.Node;
@@ -12,7 +13,7 @@ import java.util.function.Predicate;
  * An edge that connects between two {@link Node nodes}.
  * These linkages allow a {@link Part part} to progress.
  */
-public interface Linkage extends Interactive {
+public interface Linkage extends Displayable, Interactive {
 
     /**
      * @return previous {@link Node node} that this linkage is connected from

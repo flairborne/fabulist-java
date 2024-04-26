@@ -10,7 +10,6 @@ import com.flairborne.fabulist.element.context.BasicContext;
 import com.flairborne.fabulist.element.context.Context;
 import com.flairborne.fabulist.element.part.Part;
 import com.flairborne.fabulist.element.part.linkage.Choice;
-import com.flairborne.fabulist.element.part.linkage.Passthrough;
 import com.flairborne.fabulist.element.part.node.Scene;
 import com.flairborne.fabulist.runtime.client.Client;
 import com.flairborne.fabulist.runtime.server.EmbeddedServer;
@@ -33,20 +32,11 @@ public class App {
                                 new Dialogue.Builder(alice.quote("How you doing?"))
                         )
                         .withLinkages(
-                                new Choice.Builder("alice-hi", "bob-fine"),
-                                new Choice.Builder("alice-hi", "bob-rude")
+                                new Choice.Builder("alice-hi", "alice-happy")
+                                        .displayText("Hello, I'm Bob. I'm fine"),
+                                new Choice.Builder("alice-hi", "alice-sad")
+                                        .displayText("I don't care about you, Alice!")
                         )
-                )
-                .addNode(new Scene.Builder("bob-fine")
-                        .addAction(new Dialogue.Builder(bob.quote("Hello, I'm Bob. I'm fine")))
-                        .addLinkage(new Passthrough.Builder("bob-fine", "alice-happy"))
-                )
-                .addNode(new Scene.Builder("bob-rude")
-                        .withActions(
-                                new ChangeContext.Builder(ChangeContext.Operation.SET_BOOLEAN, "leaving", true),
-                                new Dialogue.Builder(bob.quote("I don't care about you, Alice!"))
-                        )
-                        .addLinkage(new Passthrough.Builder("bob-rude", "alice-sad"))
                 )
                 .addNode(new Scene.Builder("alice-happy")
                         .withActions(
@@ -58,6 +48,7 @@ public class App {
                 )
                 .addNode(new Scene.Builder("alice-sad")
                         .withActions(
+                                new ChangeContext.Builder(ChangeContext.Operation.SET_BOOLEAN, "leaving", true),
                                 new Dialogue.Builder(alice.quote("Wow, you're mean")),
                                 new Dialogue.Builder(alice.quote("Okay, I can't take this anymore. I'm leaving now..."))
                                         .when(Context.isPropertyTrue("leaving"))

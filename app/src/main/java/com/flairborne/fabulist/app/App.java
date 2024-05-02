@@ -3,8 +3,6 @@ package com.flairborne.fabulist.app;
 import com.flairborne.fabulist.element.ElementId;
 import com.flairborne.fabulist.element.action.ChangeContext;
 import com.flairborne.fabulist.element.action.Dialogue;
-import com.flairborne.fabulist.element.channel.message.ChoiceSelectMessage;
-import com.flairborne.fabulist.element.channel.message.NextMessage;
 import com.flairborne.fabulist.element.character.Character;
 import com.flairborne.fabulist.element.context.BasicContext;
 import com.flairborne.fabulist.element.context.Context;
@@ -13,8 +11,6 @@ import com.flairborne.fabulist.element.part.linkage.Choice;
 import com.flairborne.fabulist.element.part.node.Scene;
 import com.flairborne.fabulist.runtime.client.Client;
 import com.flairborne.fabulist.runtime.server.EmbeddedServer;
-
-import java.util.Scanner;
 
 public class App {
 
@@ -55,51 +51,17 @@ public class App {
                         )
                 )
                 .build();
-
-        var input = new Scanner(System.in);
+        
         var context = new BasicContext();
 
         // Testing shared memory server and client setup
         var server = new EmbeddedServer(context, part);
         var client = new Client("player");
 
-        client.connect(server);
+        var repl = new Repl(client, server);
 
-        System.out.println("\nWelcome to the Fabulist REPL! :)\n");
-
-        while (true) {
-            System.out.print("(%) > ");
-            String command = input.nextLine();
-
-            if (command.equalsIgnoreCase("exit")) {
-                break;
-            }
-
-            if (command.isEmpty() || command.equalsIgnoreCase("next")) {
-                client.send(new NextMessage());
-            }
-
-            if (command.startsWith("choice")) {
-                String[] commandArgs = command.split("\\s+");
-
-                if (commandArgs.length < 2) {
-                    System.out.println("Insufficient args");
-                    continue;
-                }
-
-                client.send(new ChoiceSelectMessage(commandArgs[1]));
-            }
-
-            if (command.equalsIgnoreCase("dump")) {
-                dump(server, client);
-            }
+        while (!repl.isFinished()) {
+            repl.update();
         }
-    }
-
-    private static void dump(EmbeddedServer embeddedServer, Client client) {
-        var previousState = embeddedServer.previousStateName();
-        var currentState = embeddedServer.currentState().getClass().getSimpleName();
-
-        System.out.printf("Server [%s -> %s]\n", previousState, currentState);
     }
 }

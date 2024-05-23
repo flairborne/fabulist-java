@@ -61,7 +61,7 @@ class Repl {
 
     private void dump(EmbeddedServer server, Client client) {
         var previousState = server.previousStateName();
-        var currentState = server.currentState().getClass().getSimpleName();
+        var currentState = server.currentStateName();
 
         System.out.printf("Server [%s -> %s]\n", previousState, currentState);
     }

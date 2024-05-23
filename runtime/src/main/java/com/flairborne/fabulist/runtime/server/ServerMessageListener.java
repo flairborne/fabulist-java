@@ -4,7 +4,7 @@ import com.flairborne.fabulist.element.channel.MessageListener;
 import com.flairborne.fabulist.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.Runtime;
 
-public class ServerMessageListener implements MessageListener {
+class ServerMessageListener implements MessageListener {
 
     private final Runtime runtime;
 

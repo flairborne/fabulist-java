@@ -5,7 +5,7 @@ import com.flairborne.fabulist.element.channel.message.ChoicePresentMessage;
 import com.flairborne.fabulist.element.channel.message.DialogueMessage;
 import com.flairborne.fabulist.element.channel.message.Message;
 
-public class ClientMessageListener implements MessageListener {
+class ClientMessageListener implements MessageListener {
 
     @Override
     public void onReceive(Message message) {

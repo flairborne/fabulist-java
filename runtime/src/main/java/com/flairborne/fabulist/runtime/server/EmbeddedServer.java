@@ -66,9 +66,7 @@ public class EmbeddedServer implements Server {
     }
 
     public String previousStateName() {
-        var state = runtime.previousState();
-
-        return state == null ? "None" : state.getClass().getSimpleName();
+        return previousState() == null ? "None" : previousState().getClass().getSimpleName();
     }
 
     public boolean isFinished() {

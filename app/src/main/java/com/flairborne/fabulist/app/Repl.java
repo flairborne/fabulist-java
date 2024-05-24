@@ -4,6 +4,7 @@ import com.flairborne.fabulist.element.channel.message.ChoiceSelectMessage;
 import com.flairborne.fabulist.element.channel.message.NextMessage;
 import com.flairborne.fabulist.runtime.client.Client;
 import com.flairborne.fabulist.runtime.server.EmbeddedServer;
+import com.flairborne.fabulist.runtime.server.Server;
 
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ class Repl {
 
     private final Scanner input;
 
-    private final EmbeddedServer server;
+    private final Server server;
     private final Client client;
     private boolean isFinished;
 
@@ -59,10 +60,18 @@ class Repl {
         return isFinished;
     }
 
-    private void dump(EmbeddedServer server, Client client) {
-        var previousState = server.previousStateName();
-        var currentState = server.currentStateName();
+    private void dump(Server server, Client client) {
+        var previousState = previousStateName();
+        var currentState = currentStateName();
 
         System.out.printf("Server [%s -> %s]\n", previousState, currentState);
+    }
+
+    private String currentStateName() {
+        return server.currentState() == null ? "None" : server.currentState().getClass().getSimpleName();
+    }
+
+    private String previousStateName() {
+        return server.previousState() == null ? "None" : server.previousState().getClass().getSimpleName();
     }
 }

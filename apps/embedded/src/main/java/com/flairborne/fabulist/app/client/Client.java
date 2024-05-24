@@ -1,7 +1,7 @@
 package com.flairborne.fabulist.app.client;
 
 import com.flairborne.fabulist.app.server.EmbeddedServer;
-import com.flairborne.fabulist.element.channel.message.Message;
+import com.flairborne.fabulist.runtime.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.server.Server;
 
 public class Client {

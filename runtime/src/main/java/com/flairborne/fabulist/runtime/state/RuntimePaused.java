@@ -1,6 +1,6 @@
 package com.flairborne.fabulist.runtime.state;
 
-import com.flairborne.fabulist.element.channel.message.Message;
+import com.flairborne.fabulist.runtime.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.Runtime;
 
 public final class RuntimePaused implements RuntimeState {

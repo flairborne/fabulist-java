@@ -1,14 +1,14 @@
 package com.flairborne.fabulist.app;
 
-import com.flairborne.fabulist.element.ElementId;
-import com.flairborne.fabulist.element.action.ChangeContext;
-import com.flairborne.fabulist.element.action.Dialogue;
-import com.flairborne.fabulist.element.character.Character;
-import com.flairborne.fabulist.element.context.BasicContext;
-import com.flairborne.fabulist.element.context.Context;
-import com.flairborne.fabulist.element.part.Part;
-import com.flairborne.fabulist.element.part.linkage.Choice;
-import com.flairborne.fabulist.element.part.node.Scene;
+import com.flairborne.fabulist.runtime.element.ElementId;
+import com.flairborne.fabulist.runtime.element.action.ChangeContext;
+import com.flairborne.fabulist.runtime.element.action.Dialogue;
+import com.flairborne.fabulist.runtime.element.character.Character;
+import com.flairborne.fabulist.runtime.element.context.BasicContext;
+import com.flairborne.fabulist.runtime.element.context.Context;
+import com.flairborne.fabulist.runtime.element.part.Part;
+import com.flairborne.fabulist.runtime.element.part.linkage.Choice;
+import com.flairborne.fabulist.runtime.element.part.node.Scene;
 import com.flairborne.fabulist.app.client.Client;
 import com.flairborne.fabulist.app.server.EmbeddedServer;
 

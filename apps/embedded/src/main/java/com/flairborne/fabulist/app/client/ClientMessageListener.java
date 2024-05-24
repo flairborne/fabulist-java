@@ -1,9 +1,9 @@
 package com.flairborne.fabulist.app.client;
 
-import com.flairborne.fabulist.element.channel.MessageListener;
-import com.flairborne.fabulist.element.channel.message.ChoicePresentMessage;
-import com.flairborne.fabulist.element.channel.message.DialogueMessage;
-import com.flairborne.fabulist.element.channel.message.Message;
+import com.flairborne.fabulist.runtime.element.channel.MessageListener;
+import com.flairborne.fabulist.runtime.element.channel.message.ChoicePresentMessage;
+import com.flairborne.fabulist.runtime.element.channel.message.DialogueMessage;
+import com.flairborne.fabulist.runtime.element.channel.message.Message;
 
 class ClientMessageListener implements MessageListener {
 

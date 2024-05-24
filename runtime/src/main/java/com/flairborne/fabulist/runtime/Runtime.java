@@ -1,9 +1,9 @@
 package com.flairborne.fabulist.runtime;
 
-import com.flairborne.fabulist.element.ElementId;
-import com.flairborne.fabulist.element.context.Context;
-import com.flairborne.fabulist.element.part.Part;
-import com.flairborne.fabulist.element.part.node.Node;
+import com.flairborne.fabulist.runtime.element.ElementId;
+import com.flairborne.fabulist.runtime.element.context.Context;
+import com.flairborne.fabulist.runtime.element.part.Part;
+import com.flairborne.fabulist.runtime.element.part.node.Node;
 import com.flairborne.fabulist.runtime.server.Server;
 import com.flairborne.fabulist.runtime.state.RuntimeActing;
 import com.flairborne.fabulist.runtime.state.RuntimeBlocked;

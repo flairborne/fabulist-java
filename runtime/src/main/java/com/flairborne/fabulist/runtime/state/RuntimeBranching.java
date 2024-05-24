@@ -1,9 +1,9 @@
 package com.flairborne.fabulist.runtime.state;
 
-import com.flairborne.fabulist.element.channel.message.ChoicePresentMessage;
-import com.flairborne.fabulist.element.context.Context;
-import com.flairborne.fabulist.element.part.linkage.Linkage;
-import com.flairborne.fabulist.element.part.node.Node;
+import com.flairborne.fabulist.runtime.element.channel.message.ChoicePresentMessage;
+import com.flairborne.fabulist.runtime.element.context.Context;
+import com.flairborne.fabulist.runtime.element.part.linkage.Linkage;
+import com.flairborne.fabulist.runtime.element.part.node.Node;
 import com.flairborne.fabulist.runtime.Runtime;
 
 import java.util.ArrayList;

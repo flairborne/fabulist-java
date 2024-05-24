@@ -1,7 +1,7 @@
 package com.flairborne.fabulist.app.server;
 
-import com.flairborne.fabulist.element.channel.MessageListener;
-import com.flairborne.fabulist.element.channel.message.Message;
+import com.flairborne.fabulist.runtime.element.channel.MessageListener;
+import com.flairborne.fabulist.runtime.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.Runtime;
 
 class ServerMessageListener implements MessageListener {

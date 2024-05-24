@@ -1,4 +1,4 @@
-package com.flairborne.fabulist.runtime;
+package com.flairborne.fabulist.app.server;
 
 import com.flairborne.fabulist.element.ElementId;
 import com.flairborne.fabulist.element.action.Dialogue;
@@ -10,13 +10,13 @@ import com.flairborne.fabulist.element.part.Part;
 import com.flairborne.fabulist.element.part.linkage.Choice;
 import com.flairborne.fabulist.element.part.linkage.Passthrough;
 import com.flairborne.fabulist.element.part.node.Scene;
-import com.flairborne.fabulist.runtime.server.EmbeddedServer;
+import com.flairborne.fabulist.runtime.Runtime;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class RuntimeTest {
+public class EmbeddedServerTest {
 
     private Runtime createRuntime(Part.Builder builder) {
         var part = builder.build();

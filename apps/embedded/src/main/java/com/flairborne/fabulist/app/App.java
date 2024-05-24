@@ -9,8 +9,8 @@ import com.flairborne.fabulist.element.context.Context;
 import com.flairborne.fabulist.element.part.Part;
 import com.flairborne.fabulist.element.part.linkage.Choice;
 import com.flairborne.fabulist.element.part.node.Scene;
-import com.flairborne.fabulist.runtime.client.Client;
-import com.flairborne.fabulist.runtime.server.EmbeddedServer;
+import com.flairborne.fabulist.app.client.Client;
+import com.flairborne.fabulist.app.server.EmbeddedServer;
 
 public class App {
 

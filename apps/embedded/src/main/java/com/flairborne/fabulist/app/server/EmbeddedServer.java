@@ -1,10 +1,11 @@
-package com.flairborne.fabulist.runtime.server;
+package com.flairborne.fabulist.app.server;
 
 import com.flairborne.fabulist.element.channel.MessageListener;
 import com.flairborne.fabulist.element.channel.message.Message;
 import com.flairborne.fabulist.element.context.Context;
 import com.flairborne.fabulist.element.part.Part;
 import com.flairborne.fabulist.runtime.Runtime;
+import com.flairborne.fabulist.runtime.server.Server;
 import com.flairborne.fabulist.runtime.state.RuntimeState;
 
 import java.util.ArrayList;

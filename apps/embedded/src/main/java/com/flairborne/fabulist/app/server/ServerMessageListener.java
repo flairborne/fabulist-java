@@ -1,4 +1,4 @@
-package com.flairborne.fabulist.runtime.server;
+package com.flairborne.fabulist.app.server;
 
 import com.flairborne.fabulist.element.channel.MessageListener;
 import com.flairborne.fabulist.element.channel.message.Message;

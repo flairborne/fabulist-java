@@ -2,8 +2,8 @@ package com.flairborne.fabulist.app;
 
 import com.flairborne.fabulist.element.channel.message.ChoiceSelectMessage;
 import com.flairborne.fabulist.element.channel.message.NextMessage;
-import com.flairborne.fabulist.runtime.client.Client;
-import com.flairborne.fabulist.runtime.server.EmbeddedServer;
+import com.flairborne.fabulist.app.client.Client;
+import com.flairborne.fabulist.app.server.EmbeddedServer;
 import com.flairborne.fabulist.runtime.server.Server;
 
 import java.util.Scanner;

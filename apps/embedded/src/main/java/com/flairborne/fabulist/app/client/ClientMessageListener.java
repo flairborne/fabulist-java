@@ -1,4 +1,4 @@
-package com.flairborne.fabulist.runtime.client;
+package com.flairborne.fabulist.app.client;
 
 import com.flairborne.fabulist.element.channel.MessageListener;
 import com.flairborne.fabulist.element.channel.message.ChoicePresentMessage;

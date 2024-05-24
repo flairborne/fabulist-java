@@ -2,6 +2,7 @@ package com.flairborne.fabulist.runtime.server;
 
 import com.flairborne.fabulist.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.Runtime;
+import com.flairborne.fabulist.runtime.state.RuntimeState;
 
 import java.util.Queue;
 
@@ -33,4 +34,14 @@ public interface Server {
      * @return runtime in this server
      */
     Runtime runtime();
+
+    /**
+     * @return current runtime state
+     */
+    RuntimeState currentState();
+
+    /**
+     * @return previous runtime state
+     */
+    RuntimeState previousState();
 }

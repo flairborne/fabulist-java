@@ -12,4 +12,4 @@ plugins {
 
 rootProject.name = "fabulist-java"
 
-include("app", "element", "runtime")
+include("apps:embedded", "element", "runtime")

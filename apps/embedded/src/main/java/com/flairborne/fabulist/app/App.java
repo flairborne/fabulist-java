@@ -9,7 +9,7 @@ import com.flairborne.fabulist.runtime.element.context.Context;
 import com.flairborne.fabulist.runtime.element.part.Part;
 import com.flairborne.fabulist.runtime.element.part.linkage.Choice;
 import com.flairborne.fabulist.runtime.element.part.node.Scene;
-import com.flairborne.fabulist.app.client.Client;
+import com.flairborne.fabulist.app.client.EmbeddedClient;
 import com.flairborne.fabulist.app.server.EmbeddedServer;
 
 public class App {
@@ -56,7 +56,7 @@ public class App {
 
         // Testing shared memory server and client setup
         var server = new EmbeddedServer(context, part);
-        var client = new Client("player");
+        var client = new EmbeddedClient("player");
 
         var repl = new Repl(client, server);
 

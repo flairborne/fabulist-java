@@ -2,7 +2,7 @@ package com.flairborne.fabulist.app;
 
 import com.flairborne.fabulist.runtime.element.channel.message.ChoiceSelectMessage;
 import com.flairborne.fabulist.runtime.element.channel.message.NextMessage;
-import com.flairborne.fabulist.app.client.Client;
+import com.flairborne.fabulist.app.client.EmbeddedClient;
 import com.flairborne.fabulist.app.server.EmbeddedServer;
 import com.flairborne.fabulist.runtime.server.Server;
 
@@ -13,10 +13,10 @@ class Repl {
     private final Scanner input;
 
     private final Server server;
-    private final Client client;
+    private final EmbeddedClient client;
     private boolean isFinished;
 
-    Repl(Client client, EmbeddedServer server) {
+    Repl(EmbeddedClient client, EmbeddedServer server) {
         this.client = client;
         this.server = server;
 
@@ -60,7 +60,7 @@ class Repl {
         return isFinished;
     }
 
-    private void dump(Server server, Client client) {
+    private void dump(Server server, EmbeddedClient client) {
         var previousState = previousStateName();
         var currentState = currentStateName();
 

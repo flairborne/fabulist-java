@@ -4,12 +4,12 @@ import com.flairborne.fabulist.app.server.EmbeddedServer;
 import com.flairborne.fabulist.runtime.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.server.Server;
 
-public class Client {
+public class EmbeddedClient {
 
     private final String name;
     private Server server;
 
-    public Client(String name) {
+    public EmbeddedClient(String name) {
         this.name = name;
     }
 

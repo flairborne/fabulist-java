@@ -53,20 +53,14 @@ public class EmbeddedServer implements Server {
         return runtime;
     }
 
+    @Override
     public RuntimeState currentState() {
         return runtime.currentState();
     }
 
-    public String currentStateName() {
-        return currentState() == null ? "None" : currentState().getClass().getSimpleName();
-    }
-
+    @Override
     public RuntimeState previousState() {
         return runtime.previousState();
-    }
-
-    public String previousStateName() {
-        return previousState() == null ? "None" : previousState().getClass().getSimpleName();
     }
 
     public boolean isFinished() {

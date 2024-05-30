@@ -6,7 +6,7 @@ import com.flairborne.fabulist.runtime.element.context.Context;
 import com.flairborne.fabulist.runtime.element.part.Part;
 import com.flairborne.fabulist.runtime.Runtime;
 import com.flairborne.fabulist.runtime.server.Server;
-import com.flairborne.fabulist.runtime.state.RuntimeState;
+import com.flairborne.fabulist.runtime.RuntimeState;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -22,7 +22,7 @@ public class Part extends AbstractElement {
     // TODO: Use a map for O(1) access. We query the element ID as the key anyway
     private final List<Node> nodes;
 
-    private Node root;
+    private final Node root;
 
     public static class Builder {
 

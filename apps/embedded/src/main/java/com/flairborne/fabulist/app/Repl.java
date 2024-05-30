@@ -1,9 +1,10 @@
 package com.flairborne.fabulist.app;
 
-import com.flairborne.fabulist.runtime.element.channel.message.ChoiceSelectMessage;
-import com.flairborne.fabulist.runtime.element.channel.message.NextMessage;
 import com.flairborne.fabulist.app.client.EmbeddedClient;
 import com.flairborne.fabulist.app.server.EmbeddedServer;
+import com.flairborne.fabulist.runtime.RuntimeState;
+import com.flairborne.fabulist.runtime.element.channel.message.ChoiceSelectMessage;
+import com.flairborne.fabulist.runtime.element.channel.message.NextMessage;
 import com.flairborne.fabulist.runtime.server.Server;
 
 import java.util.Scanner;
@@ -68,10 +69,12 @@ class Repl {
     }
 
     private String currentStateName() {
-        return server.currentState() == null ? "None" : server.currentState().getClass().getSimpleName();
+        RuntimeState currentState = server.runtime().currentState();
+        return currentState == null ? "None" : currentState.getClass().getSimpleName();
     }
 
     private String previousStateName() {
-        return server.previousState() == null ? "None" : server.previousState().getClass().getSimpleName();
+        RuntimeState previousState = server.runtime().previousState();
+        return previousState == null ? "None" : previousState.getClass().getSimpleName();
     }
 }

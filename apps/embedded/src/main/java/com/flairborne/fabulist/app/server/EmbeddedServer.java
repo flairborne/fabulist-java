@@ -1,12 +1,11 @@
 package com.flairborne.fabulist.app.server;
 
+import com.flairborne.fabulist.runtime.Runtime;
 import com.flairborne.fabulist.runtime.element.channel.MessageListener;
 import com.flairborne.fabulist.runtime.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.element.context.Context;
 import com.flairborne.fabulist.runtime.element.part.Part;
-import com.flairborne.fabulist.runtime.Runtime;
 import com.flairborne.fabulist.runtime.server.Server;
-import com.flairborne.fabulist.runtime.RuntimeState;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -52,19 +51,5 @@ public class EmbeddedServer implements Server {
     @Override
     public Runtime runtime() {
         return runtime;
-    }
-
-    @Override
-    public RuntimeState currentState() {
-        return runtime.currentState();
-    }
-
-    @Override
-    public RuntimeState previousState() {
-        return runtime.previousState();
-    }
-
-    public boolean isFinished() {
-        return runtime.isFinished();
     }
 }

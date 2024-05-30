@@ -1,6 +1,4 @@
-package com.flairborne.fabulist.runtime.state;
-
-import com.flairborne.fabulist.runtime.Runtime;
+package com.flairborne.fabulist.runtime;
 
 public sealed interface RuntimeState permits RuntimeActing, RuntimeReady, RuntimePaused, RuntimeBranching, RuntimeBlocked, RuntimeFinished {
 

@@ -1,9 +1,8 @@
-package com.flairborne.fabulist.runtime.state;
+package com.flairborne.fabulist.runtime;
 
 import com.flairborne.fabulist.runtime.element.channel.message.FinishedMessage;
-import com.flairborne.fabulist.runtime.Runtime;
 
-public final class RuntimeFinished implements RuntimeState {
+final class RuntimeFinished implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {

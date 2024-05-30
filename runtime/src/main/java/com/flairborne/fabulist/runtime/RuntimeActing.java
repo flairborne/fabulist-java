@@ -1,14 +1,13 @@
-package com.flairborne.fabulist.runtime.state;
+package com.flairborne.fabulist.runtime;
 
 import com.flairborne.fabulist.runtime.element.action.Action;
 import com.flairborne.fabulist.runtime.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.element.context.Context;
 import com.flairborne.fabulist.runtime.element.part.node.Node;
-import com.flairborne.fabulist.runtime.Runtime;
 
 import java.util.function.Predicate;
 
-public final class RuntimeActing implements RuntimeState {
+final class RuntimeActing implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {

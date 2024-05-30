@@ -1,11 +1,10 @@
-package com.flairborne.fabulist.runtime.state;
+package com.flairborne.fabulist.runtime;
 
 import com.flairborne.fabulist.runtime.element.ElementId;
 import com.flairborne.fabulist.runtime.element.channel.message.ChoiceSelectMessage;
 import com.flairborne.fabulist.runtime.element.channel.message.Message;
-import com.flairborne.fabulist.runtime.Runtime;
 
-public final class RuntimeBlocked implements RuntimeState {
+final class RuntimeBlocked implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {

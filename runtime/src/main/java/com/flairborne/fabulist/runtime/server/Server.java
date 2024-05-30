@@ -2,7 +2,7 @@ package com.flairborne.fabulist.runtime.server;
 
 import com.flairborne.fabulist.runtime.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.Runtime;
-import com.flairborne.fabulist.runtime.state.RuntimeState;
+import com.flairborne.fabulist.runtime.RuntimeState;
 
 import java.util.Queue;
 

@@ -1,16 +1,15 @@
-package com.flairborne.fabulist.runtime.state;
+package com.flairborne.fabulist.runtime;
 
 import com.flairborne.fabulist.runtime.element.channel.message.ChoicePresentMessage;
 import com.flairborne.fabulist.runtime.element.context.Context;
 import com.flairborne.fabulist.runtime.element.part.linkage.Linkage;
 import com.flairborne.fabulist.runtime.element.part.node.Node;
-import com.flairborne.fabulist.runtime.Runtime;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public final class RuntimeBranching implements RuntimeState {
+final class RuntimeBranching implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {

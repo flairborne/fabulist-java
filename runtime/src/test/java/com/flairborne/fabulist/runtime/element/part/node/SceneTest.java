@@ -22,6 +22,6 @@ public class SceneTest {
                 .addLinkage(new Choice.Builder("scene-a", "scene-b"))
                 .build();
 
-        assertTrue(scene.isInteractive());
+        assertTrue(scene.isBlocking());
     }
 }

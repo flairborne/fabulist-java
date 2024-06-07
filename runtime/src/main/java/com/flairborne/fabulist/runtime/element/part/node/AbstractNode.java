@@ -20,7 +20,7 @@ public abstract class AbstractNode extends AbstractElement implements Node {
     // TODO: Queue of actions might disable backtracking or undo functionality
     protected final Queue<Action> actions;
     protected final List<Linkage> linkages;
-    protected final boolean isInteractive;
+    protected final boolean isBlocking;
 
     // Builder is a generic type with a recursive type parameter
     public abstract static class Builder<T extends Builder<T>> {
@@ -28,7 +28,7 @@ public abstract class AbstractNode extends AbstractElement implements Node {
         protected final ElementId id;
         protected final Queue<Action> actions;
         protected final List<Linkage> linkages;
-        private boolean isInteractive;
+        private boolean isBlocking;
 
         public Builder(String id) {
             this(ElementId.from(id));
@@ -74,8 +74,8 @@ public abstract class AbstractNode extends AbstractElement implements Node {
                 throw new IllegalArgumentException("Cannot add linkage that does not originate from this node");
             }
 
-            if (!isInteractive && linkage.isInteractive()) {
-                isInteractive = true;
+            if (!isBlocking && linkage.isBlocking()) {
+                isBlocking = true;
             }
 
             linkages.add(linkage);
@@ -92,7 +92,7 @@ public abstract class AbstractNode extends AbstractElement implements Node {
         super(builder.id);
         actions = builder.actions;
         linkages = Collections.unmodifiableList(builder.linkages);
-        isInteractive = builder.isInteractive;
+        isBlocking = builder.isBlocking;
     }
 
     @Override
@@ -111,10 +111,10 @@ public abstract class AbstractNode extends AbstractElement implements Node {
     }
 
     /**
-     * @return whether node is interactive which means at least one of its linkages is interactive
+     * @return whether node is blocking which means at least one of its linkages is blocking
      */
     @Override
-    public boolean isInteractive() {
-        return isInteractive;
+    public boolean isBlocking() {
+        return isBlocking;
     }
 }

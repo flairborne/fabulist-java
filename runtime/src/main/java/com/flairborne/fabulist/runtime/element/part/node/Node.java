@@ -2,7 +2,7 @@ package com.flairborne.fabulist.runtime.element.part.node;
 
 import com.flairborne.fabulist.runtime.element.Element;
 import com.flairborne.fabulist.runtime.element.action.Action;
-import com.flairborne.fabulist.runtime.element.context.Interactive;
+import com.flairborne.fabulist.runtime.element.context.Blocking;
 import com.flairborne.fabulist.runtime.element.part.linkage.Linkage;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Queue;
  * Actions are triggered when a node is entered and exited.
  * Linkages are presented to allow the story to traverse to other connected nodes.
  */
-public interface Node extends Element, Interactive {
+public interface Node extends Element, Blocking {
 
     /**
      * @return {@link Action actions} performed by this node during enter or exit

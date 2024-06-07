@@ -1,10 +1,10 @@
 package com.flairborne.fabulist.runtime.element.part.linkage;
 
 import com.flairborne.fabulist.runtime.element.ElementId;
-import com.flairborne.fabulist.runtime.element.context.Interactive;
+import com.flairborne.fabulist.runtime.element.context.Blocking;
 
 /**
- * A {@link Interactive non-interactive} linkage that simply lets the node continue to the next node.
+ * A {@link Blocking non-blocking} linkage that simply lets the node continue to the next node.
  */
 public class Passthrough extends AbstractLinkage {
 
@@ -34,7 +34,7 @@ public class Passthrough extends AbstractLinkage {
     }
 
     @Override
-    public boolean isInteractive() {
+    public boolean isBlocking() {
         return false;
     }
 }

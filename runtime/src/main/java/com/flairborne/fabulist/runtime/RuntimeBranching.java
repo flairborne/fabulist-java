@@ -20,7 +20,7 @@ final class RuntimeBranching implements RuntimeState {
          *  Let's say a Node has only one linkage. During a step, should the Node automatically traverse that linkage
          *  since there's no other linkage anyway?
          */
-        boolean canPassthrough = !current.isInteractive() && current.linkages().size() == 1;
+        boolean canPassthrough = !current.isBlocking() && current.linkages().size() == 1;
 
         if (canPassthrough) {
             return handlePassthrough(runtime);
@@ -41,7 +41,7 @@ final class RuntimeBranching implements RuntimeState {
         List<ChoicePresentMessage.ChoiceMessage> choices = new ArrayList<>();
 
         for (Linkage linkage : runtime.currentNode().linkages()) {
-            if (!linkage.isInteractive()) {
+            if (!linkage.isBlocking()) {
                 continue;
             }
 

@@ -27,7 +27,7 @@ public interface Server {
     /**
      * @return messages that are sent to this server
      */
-    Queue<Message> inboundMessages();
+    Queue<Message> messages();
 
     /**
      * @return runtime in this server

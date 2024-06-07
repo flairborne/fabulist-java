@@ -2,7 +2,6 @@ package com.flairborne.fabulist.runtime.element.action;
 
 import com.flairborne.fabulist.runtime.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.element.context.Context;
-import com.flairborne.fabulist.runtime.element.context.Displayable;
 
 import java.util.function.Predicate;
 
@@ -10,7 +9,7 @@ import java.util.function.Predicate;
  * Represents an action towards the {@link Context context} of the story.
  * Every action produces a message that details what has happened.
  */
-public interface Action extends Displayable {
+public interface Action {
 
     /**
      * Perform action.

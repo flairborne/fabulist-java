@@ -3,6 +3,8 @@ package com.flairborne.fabulist.runtime.element.part.linkage;
 import com.flairborne.fabulist.runtime.element.ElementId;
 import com.flairborne.fabulist.runtime.element.context.Context;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 
 /**
@@ -13,18 +15,19 @@ public abstract class AbstractLinkage implements Linkage {
     protected final ElementId previous;
     protected final ElementId next;
     protected final Predicate<Context> condition;
-    protected final String displayText;
+    protected final Map<String, Object> properties;
 
     public static abstract class Builder<T extends Builder<T>> {
 
         protected final ElementId previous;
         protected final ElementId next;
         protected Predicate<Context> condition;
-        protected String displayText;
+        protected final Map<String, Object> properties;
 
         protected Builder(ElementId previous, ElementId next) {
             this.previous = previous;
             this.next = next;
+            properties = new HashMap<>();
         }
 
         protected Builder(String previous, String next) {
@@ -32,7 +35,7 @@ public abstract class AbstractLinkage implements Linkage {
         }
 
         public T displayText(String displayText) {
-            this.displayText = displayText;
+            properties.put("text", displayText);
             return self();
         }
 
@@ -50,7 +53,7 @@ public abstract class AbstractLinkage implements Linkage {
         previous = builder.previous;
         next = builder.next;
         condition = builder.condition;
-        displayText = builder.displayText;
+        properties = builder.properties;
     }
 
     @Override
@@ -69,7 +72,7 @@ public abstract class AbstractLinkage implements Linkage {
     }
 
     @Override
-    public String displayText() {
-        return displayText;
+    public Map<String, Object> properties() {
+        return properties;
     }
 }

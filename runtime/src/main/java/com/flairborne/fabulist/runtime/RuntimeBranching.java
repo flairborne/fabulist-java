@@ -51,7 +51,9 @@ final class RuntimeBranching implements RuntimeState {
                 continue;
             }
 
-            choices.add(new ChoicePresentMessage.ChoiceMessage(linkage.nextId().toString(), linkage.displayText()));
+            var id = linkage.nextId().toString();
+            var text = (String) linkage.properties().get("text");
+            choices.add(new ChoicePresentMessage.ChoiceMessage(id, text));
         }
 
         runtime.server().broadcast(new ChoicePresentMessage(choices));

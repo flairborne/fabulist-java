@@ -37,9 +37,4 @@ public class Dialogue extends AbstractAction {
     public Message act(Context context) {
         return new DialogueMessage(quote.character().name(), quote.text());
     }
-
-    @Override
-    public String displayText() {
-        return quote.text();
-    }
 }

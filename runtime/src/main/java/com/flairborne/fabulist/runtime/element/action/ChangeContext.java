@@ -66,14 +66,4 @@ public class ChangeContext extends AbstractAction {
 
         return new ChangeContextMessage(key);
     }
-
-    @Override
-    public String displayText() {
-        return null;
-    }
-
-    @Override
-    public boolean isVisible() {
-        return false;
-    }
 }

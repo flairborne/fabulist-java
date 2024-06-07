@@ -28,7 +28,7 @@ final class RuntimeActing implements RuntimeState {
 
         boolean skipPause = current.actions().isEmpty() && current.isBlocking();
 
-        if (!skipPause) {
+        if (action.isBlocking() && !skipPause) {
             return Runtime.PAUSED;
         } else {
             return Runtime.READY;

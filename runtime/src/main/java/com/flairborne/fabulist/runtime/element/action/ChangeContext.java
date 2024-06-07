@@ -66,4 +66,9 @@ public class ChangeContext extends AbstractAction {
 
         return new ChangeContextMessage(key);
     }
+
+    @Override
+    public boolean isBlocking() {
+        return false;
+    }
 }

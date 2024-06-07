@@ -1,6 +1,7 @@
 package com.flairborne.fabulist.runtime.element.action;
 
 import com.flairborne.fabulist.runtime.element.channel.message.Message;
+import com.flairborne.fabulist.runtime.element.context.Blocking;
 import com.flairborne.fabulist.runtime.element.context.Context;
 
 import java.util.function.Predicate;
@@ -9,7 +10,7 @@ import java.util.function.Predicate;
  * Represents an action towards the {@link Context context} of the story.
  * Every action produces a message that details what has happened.
  */
-public interface Action {
+public interface Action extends Blocking {
 
     /**
      * Perform action.

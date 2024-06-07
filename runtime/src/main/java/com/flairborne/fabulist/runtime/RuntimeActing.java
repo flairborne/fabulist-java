@@ -11,8 +11,8 @@ final class RuntimeActing implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {
-        Node current = runtime.currentNode();
-        Action action = current.actions().poll();
+        Node currentNode = runtime.currentNode();
+        Action action = currentNode.actions().poll();
 
         if (action == null) {
             return Runtime.READY;
@@ -26,7 +26,7 @@ final class RuntimeActing implements RuntimeState {
             runtime.server().broadcast(message);
         }
 
-        boolean skipPause = current.actions().isEmpty() && current.isBlocking();
+        boolean skipPause = currentNode.actions().isEmpty() && currentNode.isBlocking();
 
         if (action.isBlocking() && !skipPause) {
             return Runtime.PAUSED;

@@ -13,14 +13,14 @@ final class RuntimeBranching implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {
-        Node current = runtime.currentNode();
+        Node currentNode = runtime.currentNode();
 
         /*
          * TODO: Add different passthrough strategies?
          *  Let's say a Node has only one linkage. During a step, should the Node automatically traverse that linkage
          *  since there's no other linkage anyway?
          */
-        boolean canPassthrough = !current.isBlocking() && current.linkages().size() == 1;
+        boolean canPassthrough = !currentNode.isBlocking() && currentNode.linkages().size() == 1;
 
         if (canPassthrough) {
             return handlePassthrough(runtime);

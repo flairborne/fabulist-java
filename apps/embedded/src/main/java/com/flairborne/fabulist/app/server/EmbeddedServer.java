@@ -44,7 +44,7 @@ public class EmbeddedServer implements Server {
     }
 
     @Override
-    public Queue<Message> inboundMessages() {
+    public Queue<Message> messages() {
         return inboundMessages;
     }
 

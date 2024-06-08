@@ -15,16 +15,24 @@ import java.util.Queue;
 
 /**
  * A finite-state machine that processes the progression of a {@link Part part}.
- * It produces {@link Message messages} depending on the {@link RuntimeState state} it is currently in.
+ * It produces {@link Message messages} depending on the {@link State state} it is currently in.
  */
 public class Runtime {
 
-    public static final RuntimeState READY = new RuntimeReady();
-    public static final RuntimeState ACTING = new RuntimeActing();
-    public static final RuntimeState PAUSED = new RuntimePaused();
-    public static final RuntimeState BRANCHING = new RuntimeBranching();
-    public static final RuntimeState BLOCKED = new RuntimeBlocked();
-    public static final RuntimeState FINISHED = new RuntimeFinished();
+    public enum State {
+        READY(new RuntimeReadyHandler()),
+        ACTING(new RuntimeActingHandler()),
+        PAUSED(new RuntimePausedHandler()),
+        BRANCHING(new RuntimeBranchingHandler()),
+        BLOCKED(new RuntimeBlockedHandler()),
+        FINISHED(new RuntimeFinishedHandler());
+
+        private final RuntimeStateHandler handler;
+
+        State(RuntimeStateHandler handler) {
+            this.handler = handler;
+        }
+    }
 
     private final Context context;
     private final Part part;
@@ -32,8 +40,8 @@ public class Runtime {
     private final Queue<Message> messages;
 
     private Node currentNode;
-    private RuntimeState previousState;
-    private RuntimeState currentState;
+    private State previousState;
+    private State currentState;
 
     public Runtime(Context context, Part part) {
         this.context = context;
@@ -41,7 +49,7 @@ public class Runtime {
         messageListeners = new ArrayList<>();
         messages = new LinkedList<>();
         currentNode = part.root();
-        setCurrentState(READY);
+        setCurrentState(State.READY);
     }
 
     public void broadcast(Message message) {
@@ -64,7 +72,7 @@ public class Runtime {
     }
 
     /**
-     * Trigger the {@link RuntimeState state} transitions to update and move forward.
+     * Trigger the {@link RuntimeStateHandler state} transitions to update and move forward.
      * An additional state update is triggered during interruption so the runtime is
      * given a chance to be unblocked and transition to another state.
      */
@@ -80,7 +88,7 @@ public class Runtime {
     }
 
     private void updateState() {
-        RuntimeState nextState = currentState.handle(this);
+        Runtime.State nextState = currentState.handler.handle(this);
         setCurrentState(nextState);
     }
 
@@ -101,15 +109,15 @@ public class Runtime {
         return context;
     }
 
-    public RuntimeState previousState() {
+    public State previousState() {
         return previousState;
     }
 
-    public RuntimeState currentState() {
+    public State currentState() {
         return currentState;
     }
 
-    private void setCurrentState(RuntimeState newState) {
+    private void setCurrentState(State newState) {
         if (currentState == newState) {
             return;
         }
@@ -123,14 +131,14 @@ public class Runtime {
     }
 
     private boolean isPaused() {
-        return currentState == PAUSED;
+        return currentState == State.PAUSED;
     }
 
     private boolean isBlocked() {
-        return currentState == BLOCKED;
+        return currentState == State.BLOCKED;
     }
 
     private boolean isFinished() {
-        return currentState == FINISHED;
+        return currentState == State.FINISHED;
     }
 }

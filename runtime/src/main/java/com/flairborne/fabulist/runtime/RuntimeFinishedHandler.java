@@ -2,13 +2,13 @@ package com.flairborne.fabulist.runtime;
 
 import com.flairborne.fabulist.runtime.context.message.FinishedMessage;
 
-final class RuntimeFinished implements RuntimeState {
+final class RuntimeFinishedHandler implements RuntimeStateHandler {
 
     @Override
-    public RuntimeState handle(Runtime runtime) {
+    public Runtime.State handle(Runtime runtime) {
         var message = new FinishedMessage();
         runtime.broadcast(message);
 
-        return Runtime.FINISHED;
+        return Runtime.State.FINISHED;
     }
 }

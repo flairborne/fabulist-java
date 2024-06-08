@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-final class RuntimeBranching implements RuntimeState {
+final class RuntimeBranchingHandler implements RuntimeStateHandler {
 
     @Override
-    public RuntimeState handle(Runtime runtime) {
+    public Runtime.State handle(Runtime runtime) {
         Node currentNode = runtime.currentNode();
 
         /*
@@ -29,15 +29,15 @@ final class RuntimeBranching implements RuntimeState {
         return handleInteractiveLinkages(runtime);
     }
 
-    private RuntimeState handlePassthrough(Runtime runtime) {
+    private Runtime.State handlePassthrough(Runtime runtime) {
         Linkage firstLinkage = runtime.currentNode().linkages().get(0);
 
         runtime.updateCurrentNode(firstLinkage.nextId());
 
-        return Runtime.READY;
+        return Runtime.State.READY;
     }
 
-    private RuntimeState handleInteractiveLinkages(Runtime runtime) {
+    private Runtime.State handleInteractiveLinkages(Runtime runtime) {
         List<ChoicePresentMessage.ChoiceMessage> choices = new ArrayList<>();
 
         for (Linkage linkage : runtime.currentNode().linkages()) {
@@ -58,6 +58,6 @@ final class RuntimeBranching implements RuntimeState {
 
         runtime.broadcast(new ChoicePresentMessage(choices));
 
-        return Runtime.BLOCKED;
+        return Runtime.State.BLOCKED;
     }
 }

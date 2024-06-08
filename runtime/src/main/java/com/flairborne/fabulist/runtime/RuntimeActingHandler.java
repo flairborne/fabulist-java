@@ -7,15 +7,15 @@ import com.flairborne.fabulist.runtime.element.part.node.Node;
 
 import java.util.function.Predicate;
 
-final class RuntimeActing implements RuntimeState {
+final class RuntimeActingHandler implements RuntimeStateHandler {
 
     @Override
-    public RuntimeState handle(Runtime runtime) {
+    public Runtime.State handle(Runtime runtime) {
         Node currentNode = runtime.currentNode();
         Action action = currentNode.actions().poll();
 
         if (action == null) {
-            return Runtime.READY;
+            return Runtime.State.READY;
         }
 
         Context context = runtime.context();
@@ -29,9 +29,9 @@ final class RuntimeActing implements RuntimeState {
         boolean skipPause = currentNode.actions().isEmpty() && currentNode.isBlocking();
 
         if (action.isBlocking() && !skipPause) {
-            return Runtime.PAUSED;
+            return Runtime.State.PAUSED;
         } else {
-            return Runtime.READY;
+            return Runtime.State.READY;
         }
     }
 }

@@ -2,21 +2,21 @@ package com.flairborne.fabulist.runtime;
 
 import com.flairborne.fabulist.runtime.element.part.node.Node;
 
-final class RuntimeReady implements RuntimeState {
+final class RuntimeReadyHandler implements RuntimeStateHandler {
 
     @Override
-    public RuntimeState handle(Runtime runtime) {
+    public Runtime.State handle(Runtime runtime) {
         Node currentNode = runtime.currentNode();
         boolean hasActions = !currentNode.actions().isEmpty();
 
         if (hasActions) {
-            return Runtime.ACTING;
+            return Runtime.State.ACTING;
         }
 
         if (currentNode.hasLinkages()) {
-            return Runtime.BRANCHING;
+            return Runtime.State.BRANCHING;
         } else {
-            return Runtime.FINISHED;
+            return Runtime.State.FINISHED;
         }
     }
 }

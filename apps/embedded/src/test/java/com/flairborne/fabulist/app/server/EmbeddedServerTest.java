@@ -5,7 +5,7 @@ import com.flairborne.fabulist.runtime.element.action.Dialogue;
 import com.flairborne.fabulist.runtime.element.channel.message.ChoiceSelectMessage;
 import com.flairborne.fabulist.runtime.element.channel.message.NextMessage;
 import com.flairborne.fabulist.runtime.element.character.Character;
-import com.flairborne.fabulist.runtime.element.context.BasicContext;
+import com.flairborne.fabulist.runtime.context.BasicContext;
 import com.flairborne.fabulist.runtime.element.part.Part;
 import com.flairborne.fabulist.runtime.element.part.linkage.Choice;
 import com.flairborne.fabulist.runtime.element.part.linkage.Passthrough;

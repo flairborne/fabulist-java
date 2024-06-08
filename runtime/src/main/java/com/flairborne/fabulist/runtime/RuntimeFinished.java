@@ -7,7 +7,7 @@ final class RuntimeFinished implements RuntimeState {
     @Override
     public RuntimeState handle(Runtime runtime) {
         var message = new FinishedMessage();
-        runtime.server().broadcast(message);
+        runtime.broadcast(message);
 
         return Runtime.FINISHED;
     }

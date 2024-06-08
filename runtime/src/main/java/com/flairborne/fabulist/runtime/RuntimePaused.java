@@ -6,7 +6,7 @@ final class RuntimePaused implements RuntimeState {
 
     @Override
     public RuntimeState handle(Runtime runtime) {
-        Message message = runtime.server().messages().poll();
+        Message message = runtime.poll();
 
         if (message == null) {
             return Runtime.PAUSED;

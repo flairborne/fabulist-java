@@ -56,7 +56,7 @@ final class RuntimeBranching implements RuntimeState {
             choices.add(new ChoicePresentMessage.ChoiceMessage(id, text));
         }
 
-        runtime.server().broadcast(new ChoicePresentMessage(choices));
+        runtime.broadcast(new ChoicePresentMessage(choices));
 
         return Runtime.BLOCKED;
     }

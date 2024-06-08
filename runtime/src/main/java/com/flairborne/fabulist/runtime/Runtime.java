@@ -1,12 +1,17 @@
 package com.flairborne.fabulist.runtime;
 
 import com.flairborne.fabulist.runtime.element.ElementId;
+import com.flairborne.fabulist.runtime.element.channel.MessageListener;
+import com.flairborne.fabulist.runtime.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.element.context.Context;
 import com.flairborne.fabulist.runtime.element.part.Part;
 import com.flairborne.fabulist.runtime.element.part.node.Node;
-import com.flairborne.fabulist.runtime.server.Server;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Queue;
 
 /**
  * A finite-state machine with {@link RuntimeState} as its state interface.
@@ -20,20 +25,41 @@ public class Runtime {
     public static final RuntimeState BLOCKED = new RuntimeBlocked();
     public static final RuntimeState FINISHED = new RuntimeFinished();
 
-    private final Server server;
     private final Context context;
     private final Part part;
+    private final List<MessageListener> messageListeners;
+    private final Queue<Message> messages;
 
     private Node currentNode;
     private RuntimeState previousState;
     private RuntimeState currentState;
 
-    public Runtime(Server server, Context context, Part part) {
-        this.server = server;
+    public Runtime(Context context, Part part) {
         this.context = context;
         this.part = part;
+        messageListeners = new ArrayList<>();
+        messages = new LinkedList<>();
         currentNode = part.root();
         setCurrentState(READY);
+    }
+
+    public void broadcast(Message message) {
+        for (MessageListener listener : messageListeners) {
+            listener.onReceive(message);
+        }
+    }
+
+    public void addListener(MessageListener messageListener) {
+        messageListeners.add(messageListener);
+    }
+
+    public void sendMessage(Message message) {
+        messages.add(message);
+        step();
+    }
+
+    public Message poll() {
+        return messages.poll();
     }
 
     public void step() {
@@ -64,10 +90,6 @@ public class Runtime {
 
     public Node currentNode() {
         return currentNode;
-    }
-
-    public Server server() {
-        return server;
     }
 
     public Context context() {

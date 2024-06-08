@@ -23,7 +23,7 @@ final class RuntimeActing implements RuntimeState {
 
         if (condition == null || condition.test(context)) {
             Message message = action.act(context);
-            runtime.server().broadcast(message);
+            runtime.broadcast(message);
         }
 
         boolean skipPause = currentNode.actions().isEmpty() && currentNode.isBlocking();

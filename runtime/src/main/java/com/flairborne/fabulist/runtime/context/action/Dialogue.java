@@ -1,4 +1,4 @@
-package com.flairborne.fabulist.runtime.element.action;
+package com.flairborne.fabulist.runtime.context.action;
 
 import com.flairborne.fabulist.runtime.context.message.DialogueMessage;
 import com.flairborne.fabulist.runtime.context.message.Message;

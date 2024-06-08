@@ -1,5 +1,7 @@
 package com.flairborne.fabulist.app;
 
+import com.flairborne.fabulist.app.client.EmbeddedClient;
+import com.flairborne.fabulist.runtime.Runtime;
 import com.flairborne.fabulist.runtime.element.ElementId;
 import com.flairborne.fabulist.runtime.element.action.ChangeContext;
 import com.flairborne.fabulist.runtime.element.action.Dialogue;
@@ -9,8 +11,6 @@ import com.flairborne.fabulist.runtime.element.context.Context;
 import com.flairborne.fabulist.runtime.element.part.Part;
 import com.flairborne.fabulist.runtime.element.part.linkage.Choice;
 import com.flairborne.fabulist.runtime.element.part.node.Scene;
-import com.flairborne.fabulist.app.client.EmbeddedClient;
-import com.flairborne.fabulist.app.server.EmbeddedServer;
 
 public class App {
 
@@ -51,14 +51,14 @@ public class App {
                         )
                 )
                 .build();
-        
+
         var context = new BasicContext();
 
         // Testing shared memory server and client setup
-        var server = new EmbeddedServer(context, part);
-        var client = new EmbeddedClient("player");
+        var runtime = new Runtime(context, part);
+        var client = new EmbeddedClient(runtime);
 
-        var repl = new Repl(client, server);
+        var repl = new Repl(client);
 
         while (!repl.isFinished()) {
             repl.update();

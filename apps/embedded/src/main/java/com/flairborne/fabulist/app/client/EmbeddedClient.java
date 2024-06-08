@@ -1,24 +1,19 @@
 package com.flairborne.fabulist.app.client;
 
-import com.flairborne.fabulist.app.server.EmbeddedServer;
+import com.flairborne.fabulist.runtime.Runtime;
 import com.flairborne.fabulist.runtime.element.channel.message.Message;
-import com.flairborne.fabulist.runtime.server.Server;
 
 public class EmbeddedClient {
 
-    private final String name;
-    private Server server;
+    private final Runtime runtime;
 
-    public EmbeddedClient(String name) {
-        this.name = name;
-    }
 
-    public void connect(EmbeddedServer server) {
-        this.server = server;
-        server.addListener(new ClientMessageListener());
+    public EmbeddedClient(Runtime runtime) {
+        this.runtime = runtime;
+        runtime.addListener(new ClientMessageListener());
     }
 
     public void send(Message message) {
-        server.sendMessage(message);
+        runtime.sendMessage(message);
     }
 }

@@ -21,9 +21,8 @@ public class EmbeddedServerTest {
     private Runtime createRuntime(Part.Builder builder) {
         var part = builder.build();
         var context = new BasicContext();
-        var server = new EmbeddedServer(context, part);
 
-        return server.runtime();
+        return new Runtime(context, part);
     }
 
     @Test
@@ -45,10 +44,10 @@ public class EmbeddedServerTest {
                         .addAction(new Dialogue.Builder(stuart.quote("Hi"))))
         );
 
-        runtime.server().sendMessage(new NextMessage());
+        runtime.sendMessage(new NextMessage());
         assertEquals(Runtime.READY, runtime.currentState());
 
-        runtime.server().sendMessage(new NextMessage());
+        runtime.sendMessage(new NextMessage());
         assertEquals(Runtime.FINISHED, runtime.currentState());
     }
 
@@ -62,12 +61,12 @@ public class EmbeddedServerTest {
                 .addNode(new Scene.Builder("scene-b"))
         );
 
-        runtime.server().sendMessage(new NextMessage());
+        runtime.sendMessage(new NextMessage());
 
         assertEquals(Runtime.READY, runtime.currentState());
         assertEquals(ElementId.from("scene-a"), runtime.currentNode().id());
 
-        runtime.server().sendMessage(new NextMessage());
+        runtime.sendMessage(new NextMessage());
 
         assertEquals(Runtime.FINISHED, runtime.currentState());
         assertEquals(ElementId.from("scene-b"), runtime.currentNode().id());
@@ -86,12 +85,12 @@ public class EmbeddedServerTest {
                         .addAction(new Dialogue.Builder(stuart.quote("Apple"))))
         );
 
-        runtime.server().sendMessage(new NextMessage());
+        runtime.sendMessage(new NextMessage());
 
         assertEquals(Runtime.BLOCKED, runtime.currentState());
         assertEquals(ElementId.from("scene-a"), runtime.currentNode().id());
 
-        runtime.server().sendMessage(new ChoiceSelectMessage("scene-b"));
+        runtime.sendMessage(new ChoiceSelectMessage("scene-b"));
 
         assertEquals(Runtime.PAUSED, runtime.currentState());
         assertEquals(ElementId.from("scene-b"), runtime.currentNode().id());

@@ -2,7 +2,7 @@ package com.flairborne.fabulist.runtime.element.part.node;
 
 import com.flairborne.fabulist.runtime.element.Element;
 import com.flairborne.fabulist.runtime.element.action.Action;
-import com.flairborne.fabulist.runtime.element.context.Blocking;
+import com.flairborne.fabulist.runtime.context.Blocking;
 import com.flairborne.fabulist.runtime.element.part.linkage.Linkage;
 
 import java.util.List;

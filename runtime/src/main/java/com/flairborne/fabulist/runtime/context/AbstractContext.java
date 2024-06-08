@@ -1,4 +1,4 @@
-package com.flairborne.fabulist.runtime.element.context;
+package com.flairborne.fabulist.runtime.context;
 
 /**
  * This class provides a skeletal implementation of the {@link Context} interface.

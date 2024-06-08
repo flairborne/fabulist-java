@@ -1,7 +1,7 @@
 package com.flairborne.fabulist.runtime.element.part.linkage;
 
 import com.flairborne.fabulist.runtime.element.ElementId;
-import com.flairborne.fabulist.runtime.element.context.Blocking;
+import com.flairborne.fabulist.runtime.context.Blocking;
 
 /**
  * A {@link Blocking non-blocking} linkage that simply lets the node continue to the next node.

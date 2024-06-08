@@ -1,7 +1,7 @@
 package com.flairborne.fabulist.runtime.element.part.linkage;
 
 import com.flairborne.fabulist.runtime.element.ElementId;
-import com.flairborne.fabulist.runtime.element.context.Context;
+import com.flairborne.fabulist.runtime.context.Context;
 
 import java.util.HashMap;
 import java.util.Map;

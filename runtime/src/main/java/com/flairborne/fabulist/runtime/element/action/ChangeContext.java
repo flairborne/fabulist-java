@@ -2,7 +2,7 @@ package com.flairborne.fabulist.runtime.element.action;
 
 import com.flairborne.fabulist.runtime.element.channel.message.ChangeContextMessage;
 import com.flairborne.fabulist.runtime.element.channel.message.Message;
-import com.flairborne.fabulist.runtime.element.context.Context;
+import com.flairborne.fabulist.runtime.context.Context;
 
 public class ChangeContext extends AbstractAction {
 

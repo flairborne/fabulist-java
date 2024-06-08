@@ -1,8 +1,8 @@
 package com.flairborne.fabulist.runtime.element.action;
 
 import com.flairborne.fabulist.runtime.element.channel.message.Message;
-import com.flairborne.fabulist.runtime.element.context.Blocking;
-import com.flairborne.fabulist.runtime.element.context.Context;
+import com.flairborne.fabulist.runtime.context.Blocking;
+import com.flairborne.fabulist.runtime.context.Context;
 
 import java.util.function.Predicate;
 

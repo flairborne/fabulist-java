@@ -3,7 +3,7 @@ package com.flairborne.fabulist.runtime.element.action;
 import com.flairborne.fabulist.runtime.element.channel.message.DialogueMessage;
 import com.flairborne.fabulist.runtime.element.channel.message.Message;
 import com.flairborne.fabulist.runtime.element.character.Quote;
-import com.flairborne.fabulist.runtime.element.context.Context;
+import com.flairborne.fabulist.runtime.context.Context;
 
 public class Dialogue extends AbstractAction {
 

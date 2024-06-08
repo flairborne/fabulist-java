@@ -1,7 +1,7 @@
 package com.flairborne.fabulist.runtime.element.part.linkage;
 
 import com.flairborne.fabulist.runtime.element.ElementId;
-import com.flairborne.fabulist.runtime.element.context.Blocking;
+import com.flairborne.fabulist.runtime.context.Blocking;
 
 /**
  * An {@link Blocking interactive} linkage that is prompted to the user.

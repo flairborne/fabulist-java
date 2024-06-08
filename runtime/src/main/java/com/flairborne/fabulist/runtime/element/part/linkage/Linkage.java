@@ -1,8 +1,8 @@
 package com.flairborne.fabulist.runtime.element.part.linkage;
 
 import com.flairborne.fabulist.runtime.element.ElementId;
-import com.flairborne.fabulist.runtime.element.context.Context;
-import com.flairborne.fabulist.runtime.element.context.Blocking;
+import com.flairborne.fabulist.runtime.context.Context;
+import com.flairborne.fabulist.runtime.context.Blocking;
 import com.flairborne.fabulist.runtime.element.part.Part;
 import com.flairborne.fabulist.runtime.element.part.node.Node;
 

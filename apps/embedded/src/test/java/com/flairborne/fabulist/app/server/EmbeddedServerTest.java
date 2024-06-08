@@ -32,7 +32,7 @@ public class EmbeddedServerTest {
         );
 
         assertEquals(ElementId.from("intro"), runtime.currentNode().id());
-        assertEquals(Runtime.READY, runtime.currentState());
+        assertEquals(Runtime.State.READY, runtime.currentState());
         assertNull(runtime.previousState());
     }
 
@@ -45,10 +45,10 @@ public class EmbeddedServerTest {
         );
 
         runtime.sendMessage(new NextMessage());
-        assertEquals(Runtime.READY, runtime.currentState());
+        assertEquals(Runtime.State.READY, runtime.currentState());
 
         runtime.sendMessage(new NextMessage());
-        assertEquals(Runtime.FINISHED, runtime.currentState());
+        assertEquals(Runtime.State.FINISHED, runtime.currentState());
     }
 
     @Test
@@ -63,12 +63,12 @@ public class EmbeddedServerTest {
 
         runtime.sendMessage(new NextMessage());
 
-        assertEquals(Runtime.READY, runtime.currentState());
+        assertEquals(Runtime.State.READY, runtime.currentState());
         assertEquals(ElementId.from("scene-a"), runtime.currentNode().id());
 
         runtime.sendMessage(new NextMessage());
 
-        assertEquals(Runtime.FINISHED, runtime.currentState());
+        assertEquals(Runtime.State.FINISHED, runtime.currentState());
         assertEquals(ElementId.from("scene-b"), runtime.currentNode().id());
     }
 
@@ -87,12 +87,12 @@ public class EmbeddedServerTest {
 
         runtime.sendMessage(new NextMessage());
 
-        assertEquals(Runtime.BLOCKED, runtime.currentState());
+        assertEquals(Runtime.State.BLOCKED, runtime.currentState());
         assertEquals(ElementId.from("scene-a"), runtime.currentNode().id());
 
         runtime.sendMessage(new ChoiceSelectMessage("scene-b"));
 
-        assertEquals(Runtime.PAUSED, runtime.currentState());
+        assertEquals(Runtime.State.PAUSED, runtime.currentState());
         assertEquals(ElementId.from("scene-b"), runtime.currentNode().id());
     }
 }

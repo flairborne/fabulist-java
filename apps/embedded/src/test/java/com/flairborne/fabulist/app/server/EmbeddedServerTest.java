@@ -1,7 +1,7 @@
 package com.flairborne.fabulist.app.server;
 
 import com.flairborne.fabulist.runtime.element.ElementId;
-import com.flairborne.fabulist.runtime.element.action.Dialogue;
+import com.flairborne.fabulist.runtime.context.action.Dialogue;
 import com.flairborne.fabulist.runtime.context.message.ChoiceSelectMessage;
 import com.flairborne.fabulist.runtime.context.message.NextMessage;
 import com.flairborne.fabulist.runtime.element.character.Character;

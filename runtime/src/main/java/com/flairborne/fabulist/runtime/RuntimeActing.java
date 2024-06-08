@@ -1,7 +1,7 @@
 package com.flairborne.fabulist.runtime;
 
 import com.flairborne.fabulist.runtime.element.action.Action;
-import com.flairborne.fabulist.runtime.element.channel.message.Message;
+import com.flairborne.fabulist.runtime.context.message.Message;
 import com.flairborne.fabulist.runtime.context.Context;
 import com.flairborne.fabulist.runtime.element.part.node.Node;
 

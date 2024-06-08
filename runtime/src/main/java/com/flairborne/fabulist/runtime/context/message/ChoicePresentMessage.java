@@ -1,4 +1,4 @@
-package com.flairborne.fabulist.runtime.element.channel.message;
+package com.flairborne.fabulist.runtime.context.message;
 
 import java.util.List;
 

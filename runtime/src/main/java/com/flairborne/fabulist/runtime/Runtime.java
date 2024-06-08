@@ -14,7 +14,8 @@ import java.util.Optional;
 import java.util.Queue;
 
 /**
- * A finite-state machine with {@link RuntimeState} as its state interface.
+ * A finite-state machine that processes the progression of a {@link Part part}.
+ * It produces {@link Message messages} depending on the {@link RuntimeState state} it is currently in.
  */
 public class Runtime {
 
@@ -62,12 +63,16 @@ public class Runtime {
         return messages.poll();
     }
 
-    public void step() {
+    /**
+     * Trigger the {@link RuntimeState state} transitions to update and move forward.
+     * An additional state update is triggered during interruption so the runtime is
+     * given a chance to be unblocked and transition to another state.
+     */
+    private void step() {
         while (!isFinished()) {
             updateState();
 
-            // Step once to allow it to process its interrupted state
-            if (isPaused() || isBlocked() || isFinished()) {
+            if (isInterrupted()) {
                 updateState();
                 break;
             }
@@ -113,15 +118,19 @@ public class Runtime {
         this.currentState = newState;
     }
 
-    public boolean isPaused() {
+    private boolean isInterrupted() {
+        return isPaused() || isBlocked() || isFinished();
+    }
+
+    private boolean isPaused() {
         return currentState == PAUSED;
     }
 
-    public boolean isBlocked() {
+    private boolean isBlocked() {
         return currentState == BLOCKED;
     }
 
-    public boolean isFinished() {
+    private boolean isFinished() {
         return currentState == FINISHED;
     }
 }
